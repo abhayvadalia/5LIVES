@@ -1,4 +1,4 @@
-import { MotionHome } from '@/components/five-lives/motion-home';
+import { ShadowHome } from '@/components/five-lives/shadow-home';
 export default function HomePage() {
-  return <MotionHome />;
+  return <ShadowHome />;
 }

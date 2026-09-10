@@ -1,3 +1,15 @@
+# Human and five selves homepage — 10 September 2026
+
+Replaced the active homepage’s cricket image and rings with an original transparent, silver-toned human and five possible selves. Native scrolling enlarges and blurs the opening headline, separates the five figures in depth, reveals their labels and transitions into oversized category stories. “Find my five” continues to the existing one-question-at-a-time intake. The shared “How it works” link resolves to the closing explanation.
+
+Motion can be paused; OS reduced-motion preferences show the complete scene. Short viewports use a static complete composition. The homepage no longer imports the WebGL renderer. No database or access changes.
+
+Validation: application lint, TypeScript and all 18 tests pass; homepage HTTP 200. Production build checked before publication. Generated asset visually inspected and genuine alpha verified. No browser interaction, screenshots, physical-device, frame-rate or screen-reader checks were performed; visual layout and animation on actual devices remain unverified.
+
+Asset source and generation prompt: `docs/FIVE_SELVES_ASSET.md`. Prior implementation notes below are historical.
+
+---
+
 # Homepage motion redesign — 10 September 2026
 
 Implemented in the existing private Site:
@@ -10,7 +22,7 @@ Implemented in the existing private Site:
 - Application lint, typecheck and all 16 tests pass. Both changed routes return HTTP 200 and the production build succeeds. No browser interaction, screenshots or physical-device checks were performed; actual animation appearance, hardware frame rate and cross-browser WebGL remain verification gaps.
 - No database migration, event, payment, communications or access changes in this redesign. Existing private owner-only access was verified.
 
-This section records the validated redesign before publishing. Deployment result is recorded below after completion.
+Private deployment version 2 succeeded on 10 September 2026 at https://five-lives.abhayvadalia.chatgpt.site. Published source: `23c9112db3009dcb68923120441f1eb54d77f97b`. This deployment note is a documentation-only follow-up.
 
 ---
 
