@@ -6,6 +6,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
 import { categories, findOption, type CategoryId } from '@/lib/catalog';
+import { questions } from '@/lib/questions';
 import {
   DRAFT_KEY,
   emptyIntake,
@@ -40,9 +41,16 @@ export function FiveSummary({ intake }: { intake: Intake }) {
     </div>
   );
 }
-export function IntakeFlow({ review = false }: { review?: boolean }) {
+export function IntakeFlow({
+  review = false,
+  immersive = false,
+}: {
+  review?: boolean;
+  immersive?: boolean;
+}) {
   const [intake, setIntake] = useState<Intake>(emptyIntake);
   const [step, setStep] = useState(0);
+  const [direction, setDirection] = useState('forward');
   const [loaded, setLoaded] = useState(false);
   const [revision, setRevision] = useState(0);
   const [saveScene, setSaveScene] = useState(false);
@@ -83,7 +91,10 @@ export function IntakeFlow({ review = false }: { review?: boolean }) {
       }
       async function load() {
         try {
-          const response = await fetch('/api/profile', { cache: 'no-store' });
+          const response = await fetch('/api/profile', {
+            cache: 'no-store',
+            signal: AbortSignal.timeout(8000),
+          });
           if (cancelled) return;
           setSignedIn(response.status !== 401);
           if (!response.ok) {
@@ -204,6 +215,7 @@ export function IntakeFlow({ review = false }: { review?: boolean }) {
     setMessage('');
   }
   function move(next: number) {
+    setDirection(next < step ? 'backward' : 'forward');
     setStep(next);
     setMessage('');
     setSaved(false);
@@ -274,7 +286,11 @@ export function IntakeFlow({ review = false }: { review?: boolean }) {
       </main>
     );
   return (
-    <main id="main" className="page-width intake-page">
+    <main
+      id="main"
+      className={`page-width intake-page ${immersive ? 'question-flow' : ''}`}
+      data-direction={direction}
+    >
       <div className="intake-top">
         <Link href="/" className="back-link">
           ← Back to Five Lives
@@ -377,17 +393,33 @@ export function IntakeFlow({ review = false }: { review?: boolean }) {
             You’ll begin with just one.
           </p>
         </aside>
-        <section className="intake-main" key={step}>
+        <section
+          className="intake-main"
+          key={step}
+          aria-label={
+            step < 5
+              ? `${category.name} question`
+              : step === 5
+                ? 'Choose your starting point'
+                : step === 6
+                  ? 'Your private scene'
+                  : 'Review your five'
+          }
+        >
           {step < 5 ? (
             <>
               <p className="eyebrow">
-                {category.name.toUpperCase()} · CATEGORY {step + 1} OF 5
+                {immersive
+                  ? `${String(step + 1).padStart(2, '0')} / 05 — ${category.name.toUpperCase()}`
+                  : `${category.name.toUpperCase()} · CATEGORY ${step + 1} OF 5`}
               </p>
               <h1 ref={heading} tabIndex={-1}>
-                {category.cue}
+                {immersive ? questions[category.id].question : category.cue}
               </h1>
               <p className="page-intro">
-                {category.description} Choose the one that speaks to you.
+                {immersive
+                  ? questions[category.id].invitation
+                  : `${category.description} Choose the one that speaks to you.`}
               </p>
               <RadioGroup
                 value={intake.choices[category.id] ?? ''}
@@ -404,7 +436,7 @@ export function IntakeFlow({ review = false }: { review?: boolean }) {
                 ].map((o) => (
                   <label
                     htmlFor={`choice-${category.id}-${o.id}`}
-                    className={`choice-card ${intake.choices[category.id] === o.id ? 'is-selected' : ''}`}
+                    className={`choice-card ${intake.choices[category.id] === o.id ? 'is-selected' : ''} ${o.id === 'none' ? 'none-choice' : ''}`}
                     key={o.id}
                   >
                     <RadioGroupItem
@@ -437,7 +469,8 @@ export function IntakeFlow({ review = false }: { review?: boolean }) {
                     move(step < 4 ? step + 1 : missing >= 0 ? missing : 5);
                   }}
                 >
-                  Continue <ArrowRight size={17} />
+                  {step < 4 ? 'Next question' : 'Continue'}{' '}
+                  <ArrowRight size={17} />
                 </Button>
               </div>
             </>
@@ -466,6 +499,7 @@ export function IntakeFlow({ review = false }: { review?: boolean }) {
                   {selected.map((id) => (
                     <label
                       key={id}
+                      htmlFor={`start-${id}`}
                       className={`choice-card ${intake.active === id ? 'is-selected' : ''}`}
                     >
                       <RadioGroupItem id={`start-${id}`} value={id} />
@@ -603,6 +637,11 @@ export function IntakeFlow({ review = false }: { review?: boolean }) {
                 memberships.
               </p>
             </>
+          )}
+          {immersive && step < 5 && (
+            <p className="question-reassurance">
+              {questions[category.id].note}
+            </p>
           )}
         </section>
       </div>

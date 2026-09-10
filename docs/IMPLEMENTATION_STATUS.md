@@ -1,3 +1,19 @@
+# Homepage motion redesign — 10 September 2026
+
+Implemented in the existing private Site:
+
+- Real WebGL 3D sculpture with five interlocking forms, reflective materials, gentle ambient movement, pointer response and scroll-linked rotation. A readable fallback remains if WebGL cannot run.
+- Rebuilt homepage typography, category treatment, scroll narrative, image depth, reveals and a direct “Find my five” invitation.
+- One-question-at-a-time intake with category-specific prompts, larger radio cards, ordered category navigation and directional transitions. Existing choices, none states, private scene, account persistence and conflict handling remain intact.
+- Pause-motion control, OS reduced-motion support and linear storytelling on phones/short viewports. Scrolling remains native; no wheel interception or scroll hijacking.
+- 3D rendering is lazy-loaded, capped near 30 fps and 1.6 device-pixel ratio, and paused when offscreen or the document is hidden. GPU resources and observers are released on unmount. The dedicated renderer chunk is about 130 KB gzip; the build's 500 KB raw chunk warning applies to this optional, separately loaded renderer.
+- Application lint, typecheck and all 16 tests pass. Both changed routes return HTTP 200 and the production build succeeds. No browser interaction, screenshots or physical-device checks were performed; actual animation appearance, hardware frame rate and cross-browser WebGL remain verification gaps.
+- No database migration, event, payment, communications or access changes in this redesign. Existing private owner-only access was verified.
+
+This section records the validated redesign before publishing. Deployment result is recorded below after completion.
+
+---
+
 # Implementation status
 
 Updated 9 September 2026. First working discovery/intake slice; the full platform is not complete.
@@ -32,4 +48,6 @@ Finish public identity feasibility and the R1 release checks, then complete the 
 
 ## Hosting
 
-Owner-only Site registered. Private publishing is the next delivery step for this validated slice. Hosting result is recorded in the task's final delivery; this document does not yet claim deployment success.
+Private deployment succeeded on 9 September 2026. URL: https://five-lives.abhayvadalia.chatgpt.site
+
+Published application revision: `f297ce675f0c5e70e86fc5b323bf16cab4646155` (version 1). Access remains owner-only. The hosted result does not establish browser/device or consumer public-sign-in verification. This post-deployment status note is a documentation-only follow-up to the published application revision.

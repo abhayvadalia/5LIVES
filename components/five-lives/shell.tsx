@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
-export function Header() {
+export function Header({ motionControl }: { motionControl?: React.ReactNode }) {
   return (
     <header className="site-header">
       <Link href="/" className="wordmark" aria-label="Five Lives home">
@@ -8,6 +8,7 @@ export function Header() {
         <span className="brand-dot">.</span>
       </Link>
       <nav aria-label="Main navigation">
+        {motionControl}
         <Link href="/experiences">Explore experiences</Link>
         <Link href="/#how-it-works" className="desktop-link">
           How it works
