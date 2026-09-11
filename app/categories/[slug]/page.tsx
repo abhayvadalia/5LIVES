@@ -1,3 +1,4 @@
+import { LifePortrait } from '@/components/five-lives/life-portrait';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowRight } from 'lucide-react';
@@ -18,9 +19,17 @@ export default async function CategoryPage({
         <Link className="back-link" href="/experiences">
           ← All possibilities
         </Link>
-        <p className="eyebrow">{category.name.toUpperCase()}</p>
-        <h1>{category.cue}</h1>
-        <p className="page-intro">{category.description}</p>
+        <div className="interior-heading">
+          <div>
+            <p className="eyebrow">{category.name.toUpperCase()}</p>
+            <h1>{category.cue}</h1>
+            <p className="page-intro">{category.description}</p>
+          </div>
+          <LifePortrait
+            index={categories.indexOf(category) + 1}
+            label={`A little room for ${category.name.toLowerCase()}.`}
+          />
+        </div>
         <div className="offering-grid">
           {category.options.map((o) => (
             <Link

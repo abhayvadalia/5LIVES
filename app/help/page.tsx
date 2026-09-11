@@ -10,7 +10,7 @@ export default function HelpPage() {
         <h1>
           Real experiences.
           <br />
-          Your own pace.
+          <em>Your own pace.</em>
         </h1>
         <div className="prose">
           <h2>What are my five?</h2>

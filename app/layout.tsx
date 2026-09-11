@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import './motion.css';
 import './shadows.css';
+import './interiors.css';
 import { PwaSupport } from '@/components/five-lives/pwa';
 
 const geistSans = Geist({

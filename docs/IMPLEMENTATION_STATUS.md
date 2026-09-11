@@ -1,3 +1,14 @@
+# Aligned interiors and imagined-lives variation — 11 September 2026
+
+- Extended the established midnight, ivory and sage design language to discovery/category/detail pages, the question flow, review and saved list, account/interest/settings surfaces, help/privacy/sign-in and errors. Shared primitives inherit dark tokens; choice/selected/error/focus states have explicit palettes. Interiors use large editorial typography, softer motion, pill controls and the same original human artwork.
+- Preserved the original homepage’s messaging. Added `/imagined-lives` as a separate variation of the same scroll narrative, linked from the main homepage footer as “Another way to see five lives,” with a return link on the alternate. “How it works” stays within the selected homepage. Both “Find my five” invitations lead to the existing guided flow.
+- Alternate message: imagine other lives, identify what draws you to them, and try one small element this week. Original copy draws on Helen Unwin’s reflection and the user-supplied Azim Rushdi essay, with an on-page inspiration note; no new data collection, therapeutic claims or event promises.
+- Read source: https://www.helenunwincoaching.com/post/if-you-had-5-lives-what-would-you-do-with-them (accessed 11 September 2026). User supplied Azim Rushdi’s “If You Had Five Other Lives To Lead, What Would You Do In Each Of Them?” in the conversation. No unattributed article paragraphs reused.
+- Validation: existing 18 tests pass; application lint and TypeScript checked; production build and non-browser HTTP route checks completed before publishing. Main/alternate/discovery/category/detail/questions/review/account/settings/interests/help/privacy/sign-in render successfully; invalid category returns 404. Data/auth/persistence behavior was not modified.
+- Visual browser inspection was rejected by automatic approval review because browser testing was not explicitly requested. No workaround used. Browser layout, responsive screenshots and interactions remain unverified. Existing assets were reused; no new image generation or dependencies.
+
+---
+
 # Human and five selves homepage — 10 September 2026
 
 Replaced the active homepage’s cricket image and rings with an original transparent, silver-toned human and five possible selves. Native scrolling enlarges and blurs the opening headline, separates the five figures in depth, reveals their labels and transitions into oversized category stories. “Find my five” continues to the existing one-question-at-a-time intake. The shared “How it works” link resolves to the closing explanation.
@@ -5,6 +16,8 @@ Replaced the active homepage’s cricket image and rings with an original transp
 Motion can be paused; OS reduced-motion preferences show the complete scene. Short viewports use a static complete composition. The homepage no longer imports the WebGL renderer. No database or access changes.
 
 Validation: application lint, TypeScript and all 18 tests pass; homepage HTTP 200. Production build checked before publication. Generated asset visually inspected and genuine alpha verified. No browser interaction, screenshots, physical-device, frame-rate or screen-reader checks were performed; visual layout and animation on actual devices remain unverified.
+
+Private deployment version 3 succeeded on 10 September 2026 at https://five-lives.abhayvadalia.chatgpt.site. Published source: `463e1591d74df564963eba996d7aacfe00aceba9`. This deployment note is a documentation-only follow-up.
 
 Asset source and generation prompt: `docs/FIVE_SELVES_ASSET.md`. Prior implementation notes below are historical.
 

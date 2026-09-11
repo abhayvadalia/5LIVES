@@ -1,6 +1,12 @@
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
-export function Header({ motionControl }: { motionControl?: React.ReactNode }) {
+export function Header({
+  motionControl,
+  howHref = '/#how-it-works',
+}: {
+  motionControl?: React.ReactNode;
+  howHref?: string;
+}) {
   return (
     <header className="site-header">
       <Link href="/" className="wordmark" aria-label="Five Lives home">
@@ -10,7 +16,7 @@ export function Header({ motionControl }: { motionControl?: React.ReactNode }) {
       <nav aria-label="Main navigation">
         {motionControl}
         <Link href="/experiences">Explore experiences</Link>
-        <Link href="/#how-it-works" className="desktop-link">
+        <Link href={howHref} className="desktop-link">
           How it works
         </Link>
         <Link href="/app" className="nav-five">
@@ -20,7 +26,7 @@ export function Header({ motionControl }: { motionControl?: React.ReactNode }) {
     </header>
   );
 }
-export function Footer() {
+export function Footer({ homeLink }: { homeLink?: 'original' | 'imagined' }) {
   return (
     <footer className="site-footer">
       <Link className="wordmark" href="/">
@@ -30,6 +36,13 @@ export function Footer() {
       <div>
         <Link href="/help">About & help</Link>
         <Link href="/privacy">Privacy</Link>
+        {homeLink && (
+          <Link href={homeLink === 'imagined' ? '/imagined-lives' : '/'}>
+            {homeLink === 'imagined'
+              ? 'Another way to see five lives'
+              : 'Original homepage'}
+          </Link>
+        )}
       </div>
       <small>Made for possibilities, at every adult life stage.</small>
     </footer>

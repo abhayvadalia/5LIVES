@@ -12,6 +12,7 @@ import { Header, Footer } from './shell';
 import { Button } from '@/components/ui/button';
 import { categories } from '@/lib/catalog';
 import { shadowMotion } from '@/lib/shadow-motion';
+import { cropStyle } from '@/lib/selves';
 const subscribe = (callback: () => void) => {
   const q = matchMedia('(prefers-reduced-motion: reduce)');
   q.addEventListener('change', callback);
@@ -70,29 +71,20 @@ const lives = [
     y: 0.08,
   },
 ] as const;
-const crops = [
-  [0, 330],
-  [360, 330],
-  [700, 355],
-  [1030, 425],
-  [1460, 340],
-  [1800, 372],
-] as const;
-const cropStyle = (index: number) => {
-  const [left, width] = crops[index];
-  return {
-    '--crop-width': width,
-    '--crop-position': `${(left / (2172 - width)) * 100}%`,
-    '--crop-mask':
-      index === 2
-        ? 'polygon(0 0,100% 0,100% 65%,90% 65%,90% 100%,0 100%)'
-        : index === 3
-          ? 'polygon(12% 0,100% 0,100% 100%,0 100%,0 45%,12% 45%)'
-          : 'none',
-  };
-};
 const vars = (value: Record<string, string | number>) => value as CSSProperties;
-export function ShadowHome() {
+export function ShadowHome({
+  variant = 'original',
+}: {
+  variant?: 'original' | 'imagined';
+}) {
+  const imagined = variant === 'imagined';
+  const questions = [
+    'Is it the play, the challenge, or being part of a team?',
+    'Is there something you’ve wanted to say, sing, or make?',
+    'How would it feel to move with a little more ease?',
+    'Is it a new place you’re drawn to, or a fresh way of seeing?',
+    'What would you make if curiosity could take the lead?',
+  ];
   const reduced = useSyncExternalStore(subscribe, getReduced, () => false);
   const [userPaused, setUserPaused] = useState(false);
   const paused = reduced || userPaused;
@@ -145,8 +137,12 @@ export function ShadowHome() {
     };
   }, [paused]);
   return (
-    <div ref={root} className={`shadow-home ${paused ? 'shadow-paused' : ''}`}>
+    <div
+      ref={root}
+      className={`shadow-home ${paused ? 'shadow-paused' : ''} ${imagined ? 'imagined-home' : ''}`}
+    >
       <Header
+        howHref={imagined ? '/imagined-lives#how-it-works' : '/#how-it-works'}
         motionControl={
           <Button
             variant="ghost"
@@ -176,25 +172,38 @@ export function ShadowHome() {
           <div className="selves-stage">
             <div className="stage-atmosphere" aria-hidden="true" />
             <div className="opening-type">
-              <p className="eyebrow">THERE IS MORE TO YOU THAN YOU THINK</p>
+              <p className="eyebrow">
+                {imagined
+                  ? 'IF YOU HAD FIVE OTHER LIVES, WHO WOULD YOU BE?'
+                  : 'THERE IS MORE TO YOU THAN YOU THINK'}
+              </p>
               <h1>
-                One you.
+                {imagined ? 'Five lives.' : 'One you.'}
                 <br />
-                <em>Five lives.</em>
+                <em>{imagined ? 'What if?' : 'Five lives.'}</em>
               </h1>
             </div>
             <div className="vision-type" aria-hidden="true">
-              <span>Not someone else.</span>
+              <span>
+                {imagined
+                  ? 'Look beneath the life you imagine.'
+                  : 'Not someone else.'}
+              </span>
               <strong>
-                More of <em>you.</em>
+                {imagined ? 'Find your ' : 'More of '}
+                <em>{imagined ? 'why.' : 'you.'}</em>
               </strong>
             </div>
             <div className="final-type">
-              <p className="eyebrow">THEY’VE BEEN HERE ALL ALONG</p>
+              <p className="eyebrow">
+                {imagined
+                  ? 'A POSSIBILITY YOU CAN FEEL TODAY'
+                  : 'THEY’VE BEEN HERE ALL ALONG'}
+              </p>
               <h2>
-                Let them
+                {imagined ? 'Bring a little' : 'Let them'}
                 <br />
-                <em>step into the light.</em>
+                <em>{imagined ? 'into this life.' : 'step into the light.'}</em>
               </h2>
             </div>
             <div
@@ -228,7 +237,11 @@ export function ShadowHome() {
             <div className="stage-bottom">
               <a href="#five-visions" className="scroll-prompt">
                 <ArrowDown size={18} />
-                <span>SCROLL. MEET THE REST OF YOU.</span>
+                <span>
+                  {imagined
+                    ? 'SCROLL. LET YOUR MIND WANDER.'
+                    : 'SCROLL. MEET THE REST OF YOU.'}
+                </span>
               </a>
               <Link className="shadow-cta" href="/choose">
                 Find my five <ArrowUpRight size={21} />
@@ -240,20 +253,76 @@ export function ShadowHome() {
           </div>
         </section>
         <section className="selves-introduction page-width" id="five-visions">
-          <p className="eyebrow">ONE LIFE CAN HOLD SO MUCH MORE</p>
-          <h2 data-kinetic>
-            You don’t need
-            <br />
-            to become
-            <br />
-            <em>someone else.</em>
-          </h2>
-          <p>
-            You can make a little room for
-            <br />
-            the people you already carry inside.
-          </p>
+          {imagined ? (
+            <>
+              <p className="eyebrow">START WITH A LITTLE IMAGINATION</p>
+              <h2 data-kinetic>
+                Imagine freely.
+                <br />
+                Notice what
+                <br />
+                <em>lights you up.</em>
+              </h2>
+              <p>
+                A musician. A traveller. A teacher. Someone entirely unexpected.
+                <br />
+                Let five lives come to mind. They can be playful, unfinished,
+                even contradictory.
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="eyebrow">ONE LIFE CAN HOLD SO MUCH MORE</p>
+              <h2 data-kinetic>
+                You don’t need
+                <br />
+                to become
+                <br />
+                <em>someone else.</em>
+              </h2>
+              <p>
+                You can make a little room for
+                <br />
+                the people you already carry inside.
+              </p>
+            </>
+          )}
         </section>
+        {imagined && (
+          <section
+            className="imagination-prompts page-width"
+            aria-label="From an imagined life to a small beginning"
+          >
+            <article>
+              <span>01 / IMAGINE</span>
+              <h2>Who could you be?</h2>
+              <p>
+                Picture an ordinary day in another life. What are you doing? Who
+                is around you? There’s room to surprise yourself.
+              </p>
+            </article>
+            <article>
+              <span>02 / NOTICE</span>
+              <h2>What pulls you there?</h2>
+              <p>
+                Maybe it’s freedom. Maybe it’s belonging, making something, or
+                learning again. Give that feeling a name.
+              </p>
+            </article>
+            <article>
+              <span>03 / TRY</span>
+              <h2>What fits this week?</h2>
+              <p>
+                Play one song. Walk somewhere unfamiliar. Teach someone a skill.
+                Try a small piece of the life that stays with you.
+              </p>
+            </article>
+            <p className="imagination-bridge">
+              Your imagined lives can be anything. These five categories are
+              places to start exploring them.
+            </p>
+          </section>
+        )}
         <section
           className="visions-list"
           aria-label="Five visions of your life"
@@ -269,7 +338,7 @@ export function ShadowHome() {
                   0{index + 1} / {life.category.toUpperCase()}
                 </span>
                 <h2 data-kinetic>{life.verb}</h2>
-                <p>{life.line}</p>
+                <p>{imagined ? questions[index] : life.line}</p>
                 <Link href={`/categories/${life.slug}`}>
                   Meet {life.category.toLowerCase()} <ArrowUpRight size={18} />
                 </Link>
@@ -285,19 +354,40 @@ export function ShadowHome() {
           ))}
         </section>
         <section className="selves-closing page-width" id="how-it-works">
-          <p className="eyebrow">FIVE POSSIBILITIES. ONE PLACE TO BEGIN.</p>
-          <h2 data-kinetic>
-            Finally make room
-            <br />
-            for this part
-            <br />
-            of <em>yourself.</em>
-          </h2>
-          <p>
-            A few questions. A little space to imagine.
-            <br />
-            Choose something in each category. Begin with just one.
-          </p>
+          {imagined ? (
+            <>
+              <p className="eyebrow">ONE SMALL BEGINNING IS ENOUGH</p>
+              <h2 data-kinetic>
+                A little of
+                <br />
+                that life.
+                <br />
+                <em>This week.</em>
+              </h2>
+              <p>
+                Start with what you’re drawn to.
+                <br />
+                Explore Sports, Art, Health, Travel and Tech, then choose one
+                place to begin.
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="eyebrow">FIVE POSSIBILITIES. ONE PLACE TO BEGIN.</p>
+              <h2 data-kinetic>
+                Finally make room
+                <br />
+                for this part
+                <br />
+                of <em>yourself.</em>
+              </h2>
+              <p>
+                A few questions. A little space to imagine.
+                <br />
+                Choose something in each category. Begin with just one.
+              </p>
+            </>
+          )}
           <Link className="shadow-cta" href="/choose">
             Find my five <ArrowUpRight size={22} />
           </Link>
@@ -311,7 +401,23 @@ export function ShadowHome() {
           </div>
         </section>
       </main>
-      <Footer />
+      {imagined && (
+        <aside
+          className="inspiration-note page-width"
+          aria-label="Inspiration for this page"
+        >
+          <p>
+            This page takes inspiration from the imaginary-lives exercise in
+            Julia Cameron’s <cite>The Artist’s Way</cite>,{' '}
+            <a href="https://www.helenunwincoaching.com/post/if-you-had-5-lives-what-would-you-do-with-them">
+              Helen Unwin’s reflection on five lives
+            </a>
+            , and Azim Rushdi’s essay on trying a small part of an imagined
+            life. Five Lives is an independent project.
+          </p>
+        </aside>
+      )}
+      <Footer homeLink={imagined ? 'original' : 'imagined'} />
     </div>
   );
 }

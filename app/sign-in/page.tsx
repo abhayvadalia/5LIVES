@@ -16,7 +16,7 @@ export default async function SignInPage() {
         <h1>
           Your five,
           <br />
-          wherever you are.
+          <em>wherever you are.</em>
         </h1>
         <p className="page-intro">
           Sign in to save your list and resume it on another device. We’ll ask
