@@ -37,10 +37,8 @@ export function Footer({ homeLink }: { homeLink?: 'original' | 'imagined' }) {
         <Link href="/help">About & help</Link>
         <Link href="/privacy">Privacy</Link>
         {homeLink && (
-          <Link href={homeLink === 'imagined' ? '/imagined-lives' : '/'}>
-            {homeLink === 'imagined'
-              ? 'Another way to see five lives'
-              : 'Original homepage'}
+          <Link href={homeLink === 'imagined' ? '/' : '/original'}>
+            {homeLink === 'imagined' ? 'Main homepage' : 'Original homepage'}
           </Link>
         )}
       </div>

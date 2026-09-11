@@ -1,4 +1,12 @@
+# Main homepage promotion — 11 September 2026
+
+The imagined-lives experience now renders at `/`, including its title and description. `/imagined-lives` redirects to `/` for existing links. The earlier design remains at `/original`, linked from the main footer; its footer returns to the main homepage. Navigation anchors follow the correct page. This update is prepared for the user-requested Git push; it does not change the current public deployment until separately published.
+
+---
+
 # Dissolve, interaction, enabling voice and direct access — 11 September 2026
+
+Deployment version 5 succeeded from `2b02e8e246480f82998ac88cd60a61a51279352c`. Site access changed to public (revision 2) on 11 September 2026, as requested. URL: https://five-lives.abhayvadalia.chatgpt.site. This is a documentation-only publication follow-up.
 
 - The alternate homepage’s original person dissolves and blurs out before the five figures finish separating. Health now occupies its own center position. All five figures are real category links with hover/focus illumination and an accessible keyboard reveal. Short-height and reduced-motion layouts show the resolved composition.
 - Added purposeful hover/focus treatments to navigation, footer links, category stories, buttons, filters, option cards and fields. Existing reduced-motion preferences are respected; form controls remain still while reading or scrolling.

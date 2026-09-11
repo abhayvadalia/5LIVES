@@ -149,7 +149,7 @@ export function ShadowHome({
       className={`shadow-home ${paused ? 'shadow-paused' : ''} ${imagined ? 'imagined-home' : ''}`}
     >
       <Header
-        howHref={imagined ? '/imagined-lives#how-it-works' : '/#how-it-works'}
+        howHref={imagined ? '/#how-it-works' : '/original#how-it-works'}
         motionControl={
           <Button
             variant="ghost"
