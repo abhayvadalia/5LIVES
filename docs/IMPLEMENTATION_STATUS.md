@@ -1,6 +1,6 @@
 # Main homepage promotion — 11 September 2026
 
-The imagined-lives experience now renders at `/`, including its title and description. `/imagined-lives` redirects to `/` for existing links. The earlier design remains at `/original`, linked from the main footer; its footer returns to the main homepage. Navigation anchors follow the correct page. This update is prepared for the user-requested Git push; it does not change the current public deployment until separately published.
+The imagined-lives experience now renders at `/`, including its title and description. `/imagined-lives` redirects to `/` for existing links. The earlier design remains at `/original`, linked from the main footer; its footer returns to the main homepage. Navigation anchors follow the correct page. Pushed in commit `a5215f8f2007c3d7f8f29491b15aaf7e696db7b6`. Published as version 6 on 11 September 2026 after the user reported that the public homepage was still the old version. Deployment succeeded; the root serves the imagined-lives title and variant, and `/imagined-lives` redirects to `/`. This publication note is a documentation-only follow-up.
 
 ---
 
