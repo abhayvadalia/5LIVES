@@ -16,9 +16,9 @@ export default function ExperiencesPage() {
               <em>is curious?</em>
             </h1>
             <p className="page-intro">
-              Specific, achievable experiences. A real moment to share, and
-              something tangible to keep. Browse the possibilities we’re
-              developing.
+              The right lesson, the right guidance, a moment you’ve wanted to
+              live. Explore the possibilities we’re bringing together to help
+              you begin.
             </p>
           </div>
           <LifePortrait />

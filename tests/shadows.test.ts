@@ -14,6 +14,9 @@ void test('the scroll reveal starts with one person and ends with five clear sel
   assert.equal(end.finalOpacity, 1);
   assert.equal(end.finalBlur, 0);
   assert.equal(end.openingOpacity, 0);
+  assert.equal(start.personOpacity, 1);
+  assert.equal(shadowMotion(0.53).personOpacity, 0);
+  assert.equal(end.personOpacity, 0);
 });
 
 void test('overscroll preserves the endpoint scenes and separation never reverses', () => {

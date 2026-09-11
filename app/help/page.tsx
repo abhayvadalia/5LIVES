@@ -19,33 +19,30 @@ export default function HelpPage() {
             “Nothing here yet” is welcome in every category. Choose one starting
             point when you feel ready.
           </p>
+          <h2>How does Five Lives help?</h2>
+          <p>
+            We help you find a way into the life you imagine: a music teacher
+            who helps you begin, a coach who builds your confidence, or a
+            thoughtfully planned journey. Your choices guide the kinds of
+            opportunities we bring together.
+          </p>
+          <h2>What’s available now?</h2>
+          <p>
+            You can explore possibilities and keep your five in this browser,
+            without an account. Guided activities and experiences are in
+            development. There are no confirmed dates or payments yet, and
+            saving a choice does not make a booking or send an interest request.
+          </p>
           <h2>Does choosing cost anything?</h2>
           <p>
-            Exploring, making your list, expressing interest and joining a group
-            are free. You only pay for a defined experience with a real date and
-            delivery plan. There are no confirmed events or payments in this
-            preview.
-          </p>
-          <h2>What happens after I express interest?</h2>
-          <p>
-            Your request is saved for review. It does not guarantee a match, a
-            place or a date. When the pilot is ready, a suitable experience will
-            need a confirmed host, venue, schedule, capacity and full terms
-            before booking opens.
-          </p>
-          <h2>Where do groups talk?</h2>
-          <p>
-            WhatsApp is the planned conversation channel. Group links are not
-            available yet. Joining a WhatsApp group may expose your phone number
-            and profile to other members; coordination alternatives will depend
-            on the host.
+            Exploring and making your list are free. When opportunities become
+            available, you’ll see what’s included, who’s guiding you and the
+            full price before deciding.
           </p>
           <h2>Need help with this preview?</h2>
           <p>
-            Report an issue to the person who shared this private preview with
-            you. Public support, account requests and event-specific safety
-            information must be established before launch. This preview is not
-            an emergency service.
+            If someone shared Five Lives with you, you can send feedback to
+            them. We’re still developing the experience and support channels.
           </p>
           <h2>A space for everyone</h2>
           <p>

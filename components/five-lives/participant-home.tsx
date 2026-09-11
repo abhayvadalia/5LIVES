@@ -1,4 +1,5 @@
 'use client';
+import { readBrowserProfile } from '@/lib/browser-profile';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { ArrowRight, Home, List, Compass, User } from 'lucide-react';
@@ -12,7 +13,7 @@ export function AppNavigation({ current = 'home' }: { current?: string }) {
         ['home', '/app', 'Home', Home],
         ['five', '/app/my-five', 'My five', List],
         ['experiences', '/experiences', 'Experiences', Compass],
-        ['account', '/app/settings', 'Account', User],
+        ['account', '/app/settings', 'Your space', User],
       ].map(([id, href, label, Icon]) => {
         const I = Icon as typeof Home;
         return (
@@ -32,33 +33,20 @@ export function AppNavigation({ current = 'home' }: { current?: string }) {
 export function ParticipantHome() {
   const [intake, setIntake] = useState<Intake>(emptyIntake);
   const [status, setStatus] = useState('loading');
-  const [requests, setRequests] = useState(0);
+
   useEffect(() => {
     let active = true;
     async function load() {
       try {
-        const r = await fetch('/api/profile', { cache: 'no-store' });
-        const d = (await r.json()) as { profile: Intake | null };
+        const profile = readBrowserProfile(localStorage);
         if (!active) return;
-        if (r.ok && d.profile) {
-          setIntake(d.profile);
+        if (profile) {
+          setIntake(profile);
           setStatus('saved');
-          const ir = await fetch('/api/interests', { cache: 'no-store' });
-          if (ir.ok) {
-            const data = (await ir.json()) as {
-              interests: { status: string }[];
-            };
-            if (active)
-              setRequests(
-                data.interests.filter(
-                  (i: { status: string }) => i.status !== 'withdrawn',
-                ).length,
-              );
-          }
         } else {
           const draft = parseDraft(localStorage.getItem(DRAFT_KEY));
           if (draft) setIntake(draft.intake);
-          setStatus(r.status === 401 ? 'local' : r.ok ? 'new' : 'error');
+          setStatus(draft ? 'local' : 'new');
         }
       } catch {
         if (active) {
@@ -68,7 +56,7 @@ export function ParticipantHome() {
           } catch {
             /* Storage unavailable. */
           }
-          setStatus('offline');
+          setStatus('error');
         }
       }
     }
@@ -93,47 +81,27 @@ export function ParticipantHome() {
       </p>
       {status === 'error' && (
         <p className="notice" role="alert">
-          We couldn’t load your saved list. Please reload when your connection
-          is ready.
-        </p>
-      )}
-      {status === 'offline' && (
-        <p className="notice">
-          You’re offline. Any choices below are your local draft, not your
-          latest saved account list.
+          We couldn’t read this browser’s saved list. Your current draft is
+          shown if available; check Your space for storage options.
         </p>
       )}
       <section className="next-action">
         <div>
           <p className="eyebrow">
-            {requests
-              ? 'YOUR NEXT STEP'
-              : choice
-                ? 'YOUR STARTING POINT'
-                : 'ONE PLACE TO BEGIN'}
+            {choice ? 'YOUR STARTING POINT' : 'ONE PLACE TO BEGIN'}
           </p>
-          <h2>
-            {requests
-              ? 'A little room for what comes next.'
-              : (choice?.title ?? 'What would you like to try?')}
-          </h2>
+          <h2>{choice?.title ?? 'What would you like to try?'}</h2>
           <p>
-            {requests
-              ? `${requests} active interest request${requests === 1 ? '' : 's'}. No date or place is promised yet.`
-              : choice
-                ? 'Your starting choice is a possibility, not a booking. Tell us where and when a suitable experience could fit.'
-                : 'Choose something in each category, including “Nothing here yet.” Then begin with one.'}
+            {choice
+              ? 'Every lived dream begins somewhere. Explore the support and experiences taking shape around your choice.'
+              : 'Choose what calls to you in each category. We’ll help you see a way to begin.'}
           </p>
         </div>
         <Link
           className="primary-action"
-          href={status === 'saved' && choice ? '/app/interests' : '/choose'}
+          href={choice ? `/experiences/${choice.id}` : '/choose'}
         >
-          {requests
-            ? 'View my requests'
-            : status === 'saved' && choice
-              ? 'Express interest'
-              : 'Find my five'}
+          {choice ? 'Explore my next step' : 'Find my five'}
           <ArrowRight size={18} />
         </Link>
       </section>
@@ -149,8 +117,8 @@ export function ParticipantHome() {
       <FiveSummary intake={intake} />
       <p className="small-copy">
         {status === 'saved'
-          ? 'Saved to your account.'
-          : 'Choices shown here are a local draft only. Sign in and save to use them across devices.'}
+          ? 'Saved in this browser.'
+          : 'This is your browser draft. Review and save it here when you’re ready.'}
       </p>
       <AppNavigation />
     </>

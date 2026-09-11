@@ -45,11 +45,12 @@ export default async function ExperiencePage({
             <div className="detail-fact">
               <CalendarDays />
               <div>
-                <h2>A complete, small experience</h2>
+                <h2>A little support. A real beginning.</h2>
                 <p>
-                  We’ll share the host, suitable prerequisites, location,
-                  schedule, access information and full price when a real date
-                  is ready.
+                  We’re shaping the guidance and experiences that can help you
+                  take this step. When an opportunity is ready, you’ll see who’s
+                  guiding it, what to expect, where it happens and the full
+                  price.
                 </p>
               </div>
             </div>
@@ -61,8 +62,9 @@ export default async function ExperiencePage({
               <br />A date to come.
             </h2>
             <p>
-              There are no confirmed dates for this experience yet. Add it to
-              your five, then express interest in a suitable group.
+              We’re working on ways to bring this possibility to life. Keep it
+              in your five while we develop the right opportunities. No dates
+              are confirmed yet.
             </p>
             <Link
               className="primary-action"

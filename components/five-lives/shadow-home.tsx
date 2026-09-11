@@ -87,7 +87,9 @@ export function ShadowHome({
   ];
   const reduced = useSyncExternalStore(subscribe, getReduced, () => false);
   const [userPaused, setUserPaused] = useState(false);
+  const [figuresReady, setFiguresReady] = useState(false);
   const paused = reduced || userPaused;
+  const readyRef = useRef(false);
   const stage = useRef<HTMLElement>(null);
   const root = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -98,16 +100,21 @@ export function ShadowHome({
     const render = () => {
       frame = 0;
       const rect = section.getBoundingClientRect();
-      const p = paused
-        ? 1
-        : Math.max(
-            0,
-            Math.min(
-              1,
-              -rect.top / Math.max(section.offsetHeight - innerHeight, 1),
-            ),
-          );
+      const p =
+        paused || matchMedia('(max-height: 530px)').matches
+          ? 1
+          : Math.max(
+              0,
+              Math.min(
+                1,
+                -rect.top / Math.max(section.offsetHeight - innerHeight, 1),
+              ),
+            );
       const m = shadowMotion(p);
+      if (readyRef.current !== p >= 0.53) {
+        readyRef.current = p >= 0.53;
+        setFiguresReady(readyRef.current);
+      }
       for (const [key, value] of Object.entries(m))
         section.style.setProperty('--' + key, String(value));
       section.style.setProperty('--progress', String(p));
@@ -208,13 +215,17 @@ export function ShadowHome({
             </div>
             <div
               className="selves-tableau"
-              role="img"
-              aria-label="An adult with five shadow selves separating into a player, an artist, a person practising yoga, an explorer, and a maker at a laptop."
+              role="group"
+              aria-label="Explore five possible lives"
             >
               {lives.map((life, index) => (
-                <div
+                <Link
+                  href={`/categories/${life.slug}`}
+                  aria-label={`Explore ${life.category}: ${life.name}`}
+                  tabIndex={figuresReady ? 0 : -1}
+                  aria-hidden={!figuresReady}
                   key={life.slug}
-                  className={`shadow-self shadow-self-${index}`}
+                  className={`shadow-self shadow-self-${index} ${figuresReady ? 'figure-ready' : ''}`}
                   style={vars({
                     '--self-x': life.x,
                     '--self-y': life.y,
@@ -227,9 +238,13 @@ export function ShadowHome({
                     <span>{life.category}</span>
                     <strong>{life.name}</strong>
                   </div>
-                </div>
+                </Link>
               ))}
-              <div className="original-self" style={vars(cropStyle(0))}>
+              <div
+                className="original-self"
+                aria-hidden="true"
+                style={vars(cropStyle(0))}
+              >
                 <div className="self-sprite" />
                 <span className="original-label">YOU</span>
               </div>
@@ -281,9 +296,11 @@ export function ShadowHome({
                 <em>someone else.</em>
               </h2>
               <p>
-                You can make a little room for
+                A little guidance. The right people. An experience that opens a
+                door.
                 <br />
-                the people you already carry inside.
+                We help you find a way to live the possibilities you carry
+                inside.
               </p>
             </>
           )}
@@ -313,13 +330,14 @@ export function ShadowHome({
               <span>03 / TRY</span>
               <h2>What fits this week?</h2>
               <p>
-                Play one song. Walk somewhere unfamiliar. Teach someone a skill.
-                Try a small piece of the life that stays with you.
+                Choose a first step you can picture taking. We’ll help you
+                explore a lesson, a guide or an experience that can bring it
+                within reach.
               </p>
             </article>
             <p className="imagination-bridge">
-              Your imagined lives can be anything. These five categories are
-              places to start exploring them.
+              Your imagined lives can be anything. These five categories help us
+              find a beginning that feels like you.
             </p>
           </section>
         )}
@@ -365,10 +383,11 @@ export function ShadowHome({
                 <em>This week.</em>
               </h2>
               <p>
-                Start with what you’re drawn to.
+                A first music lesson. A coach who gets you. A journey you’ve
+                pictured for years.
                 <br />
-                Explore Sports, Art, Health, Travel and Tech, then choose one
-                place to begin.
+                We’re bringing together the people and experiences that help you
+                step into that life.
               </p>
             </>
           ) : (
@@ -382,16 +401,17 @@ export function ShadowHome({
                 of <em>yourself.</em>
               </h2>
               <p>
-                A few questions. A little space to imagine.
+                Tell us what you dream of doing.
                 <br />
-                Choose something in each category. Begin with just one.
+                We help you discover the guidance, connections and experiences
+                that make a beginning possible.
               </p>
             </>
           )}
           <Link className="shadow-cta" href="/choose">
             Find my five <ArrowUpRight size={22} />
           </Link>
-          <span>Free to explore. Your own pace.</span>
+          <span>Free to explore. Begin at your own pace.</span>
           <div className="closing-categories">
             {categories.map((c) => (
               <Link href={`/categories/${c.id}`} key={c.id}>

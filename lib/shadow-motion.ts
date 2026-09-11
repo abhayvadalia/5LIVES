@@ -17,6 +17,8 @@ export function shadowMotion(progress: number) {
     split: smooth(ramp(p, 0.12, 0.61)),
     shadowOpacity: ramp(p, 0.11, 0.27),
     shadowBlur: (1 - ramp(p, 0.18, 0.51)) * 12,
+    personOpacity: 1 - ramp(p, 0.24, 0.53),
+    personBlur: ramp(p, 0.24, 0.53) * 16,
     personScale: 1 + ramp(p, 0.07, 0.38) * 0.08 - ramp(p, 0.64, 1) * 0.12,
     visionOpacity: enterVision * (1 - leaveVision),
     visionScale: 0.73 + enterVision * 0.27 + leaveVision * 0.7,

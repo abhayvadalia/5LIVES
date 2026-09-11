@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import { readBrowserProfile, writeBrowserProfile } from '@/lib/browser-profile';
 import { ArrowLeft, ArrowRight, Check, LockKeyhole } from 'lucide-react';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -54,7 +55,6 @@ export function IntakeFlow({
   const [loaded, setLoaded] = useState(false);
   const [revision, setRevision] = useState(0);
   const [saveScene, setSaveScene] = useState(false);
-  const [signedIn, setSignedIn] = useState(false);
   const [serverCopy, setServerCopy] = useState<Saved | null>(null);
   const [message, setMessage] = useState('');
   const [busy, setBusy] = useState(false);
@@ -71,7 +71,7 @@ export function IntakeFlow({
         if (!draft) localStorage.removeItem(DRAFT_KEY);
       } catch {
         setLocalError(
-          'This browser cannot keep a local draft. Keep this page open until you save to your account.',
+          'This browser cannot keep a local draft. Your choices remain here while this page stays open.',
         );
       }
       if (draft) {
@@ -91,25 +91,8 @@ export function IntakeFlow({
       }
       async function load() {
         try {
-          const response = await fetch('/api/profile', {
-            cache: 'no-store',
-            signal: AbortSignal.timeout(8000),
-          });
+          const profile = readBrowserProfile(localStorage);
           if (cancelled) return;
-          setSignedIn(response.status !== 401);
-          if (!response.ok) {
-            if (response.status !== 401)
-              setMessage(
-                'We could not load your account. Your local draft is available; retry before saving.',
-              );
-            return;
-          }
-          const data = (await response.json()) as {
-            profile: Saved | null;
-            error: string;
-          };
-          if (cancelled) return;
-          const profile = data.profile as Saved | null;
           if (profile) {
             validateIntake(profile);
             if (
@@ -124,6 +107,7 @@ export function IntakeFlow({
               setServerCopy(profile);
             } else {
               setIntake(profile);
+              setSaveScene(!!profile.scene);
               setRevision(profile.revision);
               if (review) setStep(7);
             }
@@ -131,7 +115,7 @@ export function IntakeFlow({
         } catch {
           if (!cancelled)
             setMessage(
-              'You appear to be offline. You can keep choosing; account saving needs a connection.',
+              'We could not open your saved browser list. Your current choices remain here; check Your space before saving.',
             );
         } finally {
           if (!cancelled) setLoaded(true);
@@ -145,17 +129,17 @@ export function IntakeFlow({
     };
   }, [review]);
   useEffect(() => {
-    if (!loaded || signedIn) return;
+    if (!loaded || saved) return;
     try {
       localStorage.setItem(DRAFT_KEY, serializeDraft(intake, saveScene));
     } catch {
       queueMicrotask(() =>
         setLocalError(
-          'Your browser could not save this draft. Keep this page open until account saving succeeds.',
+          'Your browser could not save this draft. Keep this page open; browser storage must be available to keep your choices.',
         ),
       );
     }
-  }, [intake, saveScene, loaded, signedIn]);
+  }, [intake, saveScene, loaded, saved]);
   useEffect(() => {
     if (loaded) heading.current?.focus();
   }, [step, loaded]);
@@ -178,7 +162,7 @@ export function IntakeFlow({
           name: 'stage_five_lives_choice',
           title: 'Choose a Five Lives possibility',
           description:
-            'Stage a local category answer in the visible intake. Does not save to an account, request a match, or book.',
+            'Stage a local category answer in the visible intake. Does not save the final list, request a match, or book.',
           inputSchema: {
             type: 'object',
             properties: {
@@ -223,15 +207,9 @@ export function IntakeFlow({
   async function refreshConflict() {
     setBusy(true);
     try {
-      const r = await fetch('/api/profile', { cache: 'no-store' });
-      const d = (await r.json()) as {
-        profile: Saved | null;
-        error: string;
-        revision: number;
-      };
-      if (!r.ok) throw new Error(d.error);
-      if (d.profile) {
-        setServerCopy(d.profile);
+      const profile = readBrowserProfile(localStorage);
+      if (profile) {
+        setServerCopy(profile);
         setMessage('Compare both lists below. Your current work is preserved.');
       } else setRevision(0);
     } catch (e) {
@@ -246,28 +224,19 @@ export function IntakeFlow({
     setMessage('');
     setBusy(true);
     try {
-      const valid = validateIntake(intake);
-      const r = await fetch('/api/profile', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...valid, revision }),
-      });
-      const data = (await r.json()) as {
-        profile: Saved | null;
-        error: string;
-        revision: number;
-      };
-      if (!r.ok) {
-        if (r.status === 401) setSignedIn(false);
-        throw new Error(data.error);
-      }
+      const data = writeBrowserProfile(
+        localStorage,
+        intake,
+        revision,
+        saveScene,
+      );
       setRevision(data.revision);
       setSaved(true);
-      setMessage('Your five are saved to your account.');
+      setMessage('Your five are saved in this browser.');
       try {
         localStorage.removeItem(DRAFT_KEY);
       } catch {
-        /* Account save is authoritative. */
+        /* The saved browser list replaces the temporary draft. */
       }
     } catch (e) {
       setMessage(
@@ -297,11 +266,7 @@ export function IntakeFlow({
         </Link>
         <span>
           <LockKeyhole size={14} />{' '}
-          {saved
-            ? 'Saved to your account'
-            : signedIn
-              ? 'Account changes save when you choose'
-              : 'Local draft · kept for 7 days'}
+          {saved ? 'Saved in this browser' : 'Local draft · kept for 7 days'}
         </span>
       </div>
       {serverCopy && (
@@ -311,7 +276,7 @@ export function IntakeFlow({
         >
           <h2>Two lists, one decision.</h2>
           <p>
-            You have a saved account list and a local draft. Review both before
+            You have a saved browser list and a local draft. Review both before
             choosing which to continue.
           </p>
           <div className="compare-grid">
@@ -325,7 +290,7 @@ export function IntakeFlow({
               </p>
             </div>
             <div>
-              <h3>Saved account list</h3>
+              <h3>Saved browser list</h3>
               <FiveSummary intake={serverCopy} />
               <p className="small-copy">
                 {serverCopy.scene
@@ -341,7 +306,7 @@ export function IntakeFlow({
                 setRevision(serverCopy.revision);
                 setServerCopy(null);
                 setMessage(
-                  'Your draft is ready to edit. Review and save when you are ready to replace the account list.',
+                  'Your draft is ready to edit. Review and save when you are ready to replace the browser list.',
                 );
               }}
             >
@@ -352,6 +317,7 @@ export function IntakeFlow({
               className="secondary-action"
               onClick={() => {
                 setIntake(serverCopy);
+                setSaveScene(!!serverCopy.scene);
                 setRevision(serverCopy.revision);
                 setServerCopy(null);
                 setStep(7);
@@ -550,9 +516,9 @@ export function IntakeFlow({
                 placeholder="I picture myself…"
               />
               <p className="small-copy">
-                <LockKeyhole size={14} /> Private to your account when you save.
-                A host may use it to prepare your experience. This is not
-                permission to share it publicly.
+                <LockKeyhole size={14} /> Kept in this browser only if you
+                choose below. It is not sent to Five Lives or shared with
+                anyone.
               </p>
               <label className="checkbox-label" htmlFor="save-scene">
                 <Checkbox
@@ -560,7 +526,7 @@ export function IntakeFlow({
                   checked={saveScene}
                   onCheckedChange={(v) => setSaveScene(v === true)}
                 />{' '}
-                Also keep this scene in my local 7-day draft on this device.
+                Keep this scene with my draft and saved list in this browser.
               </label>
               <div className="flow-actions">
                 <Button
@@ -605,11 +571,7 @@ export function IntakeFlow({
                 >
                   Edit starting choice
                 </Button>
-                {!signedIn ? (
-                  <Link className="primary-action" href="/sign-in">
-                    Sign in to save <ArrowRight size={17} />
-                  </Link>
-                ) : (
+                {
                   <Button
                     className="primary-action"
                     disabled={busy || !!serverCopy || saved}
@@ -618,11 +580,11 @@ export function IntakeFlow({
                     {busy
                       ? 'Saving…'
                       : saved
-                        ? 'Saved to your account'
+                        ? 'Saved in this browser'
                         : 'Save my five'}
                     {saved ? <Check size={18} /> : <ArrowRight size={18} />}
                   </Button>
-                )}
+                }
               </div>
               {saved && (
                 <Link className="text-action" href="/app">
@@ -630,11 +592,9 @@ export function IntakeFlow({
                 </Link>
               )}
               <p className="small-copy">
-                {signedIn
-                  ? 'Account saving lets you resume on another device.'
-                  : 'This is a local draft, not an account save. Cross-device saving uses sign-in.'}{' '}
-                Changing your five never cancels existing bookings or group
-                memberships.
+                Your list stays in this browser. It won’t follow you to another
+                device, and clearing site data removes it. Saving your five does
+                not make a booking.
               </p>
             </>
           )}
@@ -653,7 +613,7 @@ export function IntakeFlow({
       {message && (
         <div className="notice" role="status">
           {message}
-          {!saved && signedIn && (
+          {!saved && (
             <button
               className="text-action"
               onClick={() => void refreshConflict()}

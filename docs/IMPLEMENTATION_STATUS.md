@@ -1,4 +1,18 @@
+# Dissolve, interaction, enabling voice and direct access — 11 September 2026
+
+- The alternate homepage’s original person dissolves and blurs out before the five figures finish separating. Health now occupies its own center position. All five figures are real category links with hover/focus illumination and an accessible keyboard reveal. Short-height and reduced-motion layouts show the resolved composition.
+- Added purposeful hover/focus treatments to navigation, footer links, category stories, buttons, filters, option cards and fields. Existing reduced-motion preferences are respected; form controls remain still while reading or scrolling.
+- Reframed both homepages, discovery/detail/help and the post-choice invitation around enabling aspired lives through guidance, people and experiences. Opportunities remain explicitly in development. No invented availability, bookings, hosts or success claims.
+- User explicitly requested direct link access without ChatGPT login and chose browser-only saving. Visitor flows no longer call identity/profile/interest APIs; `/sign-in` redirects to review. Saved lists stay in local storage until cleared; drafts expire after seven days. Scenes require explicit opt-in for both draft and final saving. Settings clears both, and data copy explains shared-browser visibility and no cross-device recovery.
+- The former interest route now guides visitors to relevant developing opportunities; it does not pretend to send a browser-only choice to an operator. Existing server profiles, requests and operator access controls remain protected and unchanged. Earlier private data is not loaded into anonymous browsing.
+- Validation: 22 tests pass, including browser isolation, scene consent/removal, revision conflict and unavailable storage. Lint, typecheck and production build checked before publishing. HTTP checks: intake/review/settings and alternate homepage render; old login redirects. Anonymous profile/interest reads and operator PATCH return 401. No browser visual or interaction QA performed.
+- Publish the updated visitor experience first, then set Site access to public as explicitly requested. Source and access changes are separate; public audience is not used to bypass server record authorization.
+
+---
+
 # Aligned interiors and imagined-lives variation — 11 September 2026
+
+Private deployment version 4 succeeded on 11 September 2026. Published source: `be12a4f4d865c92e80abc28bb4cd3aa6a0514c95`. Main: https://five-lives.abhayvadalia.chatgpt.site; variation: https://five-lives.abhayvadalia.chatgpt.site/imagined-lives. This publication note is a documentation-only follow-up.
 
 - Extended the established midnight, ivory and sage design language to discovery/category/detail pages, the question flow, review and saved list, account/interest/settings surfaces, help/privacy/sign-in and errors. Shared primitives inherit dark tokens; choice/selected/error/focus states have explicit palettes. Interiors use large editorial typography, softer motion, pill controls and the same original human artwork.
 - Preserved the original homepage’s messaging. Added `/imagined-lives` as a separate variation of the same scroll narrative, linked from the main homepage footer as “Another way to see five lives,” with a return link on the alternate. “How it works” stays within the selected homepage. Both “Find my five” invitations lead to the existing guided flow.

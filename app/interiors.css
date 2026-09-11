@@ -834,3 +834,218 @@ select:focus-visible {
     transform: none;
   }
 }
+
+/* Scroll opens the second scene into five distinct people; the original dissolves. */
+.original-self {
+  pointer-events: none;
+}
+.imagined-home .original-self {
+  opacity: var(--personOpacity, 1);
+  filter: blur(calc(var(--personBlur, 0)*1px));
+  will-change: opacity, filter, transform;
+}
+.imagined-home .shadow-self-2 {
+  --self-y: 0 !important;
+}
+.shadow-self {
+  pointer-events: none;
+  outline-offset: 8px;
+  border-radius: 45% 45% 10px 10px;
+}
+.shadow-self.figure-ready {
+  pointer-events: auto;
+}
+.shadow-self .self-sprite {
+  transition:
+    filter 0.45s ease,
+    opacity 0.45s ease,
+    transform 0.45s ease;
+}
+.shadow-self .self-label strong {
+  transition:
+    color 0.3s,
+    letter-spacing 0.3s;
+}
+.shadow-self:focus-visible .self-sprite {
+  filter: grayscale(1) brightness(1.35) drop-shadow(0 0 14px #d7f2cc70);
+  opacity: 1;
+  transform: translateX(-50%) scale(1.045);
+}
+@media (hover: hover) and (pointer: fine) {
+  .shadow-self.figure-ready:hover .self-sprite {
+    filter: grayscale(1) brightness(1.35) drop-shadow(0 0 14px #d7f2cc70);
+    opacity: 1;
+    transform: translateX(-50%) scale(1.045);
+  }
+  .shadow-self.figure-ready:hover .self-label strong {
+    color: white;
+    letter-spacing: 0.015em;
+  }
+}
+@media (max-height: 530px) {
+  .imagined-home .original-self {
+    opacity: 0;
+  }
+}
+
+/* Hover suggests what can be opened; focus gives the same feedback without a pointer. */
+.site-header nav a,
+.site-footer a,
+.closing-categories a,
+.back-link,
+.text-action,
+.vision-row a,
+.question-header > a:last-child {
+  position: relative;
+  transition:
+    color 0.25s,
+    background 0.25s,
+    transform 0.25s;
+}
+.site-header nav a::after,
+.site-footer > div a::after,
+.closing-categories a::after,
+.back-link::after,
+.question-header > a:last-child::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 6px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.site-header nav a:focus-visible::after,
+.site-footer > div a:focus-visible::after,
+.closing-categories a:focus-visible::after,
+.back-link:focus-visible::after {
+  transform: scaleX(1);
+}
+a svg,
+button svg {
+  transition: transform 0.3s ease;
+}
+.wordmark {
+  display: inline-block;
+  transition:
+    transform 0.3s,
+    color 0.3s;
+}
+.vision-row .vision-portrait {
+  transition:
+    filter 0.5s,
+    transform 0.5s;
+}
+.offering-card:focus-visible {
+  border-color: #b8ceac;
+  background: #243c31;
+  transform: translateY(-4px);
+}
+input:not([type='radio']):not([type='checkbox']),
+textarea,
+select {
+  transition:
+    border-color 0.25s,
+    box-shadow 0.25s,
+    background 0.25s;
+}
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #c2d3b1;
+  box-shadow: 0 0 0 4px #bad5a812;
+  background: #1f3228;
+}
+.choice-card:focus-within {
+  border-color: #c2d0ad;
+  box-shadow: 0 0 0 3px #bed6ab20;
+}
+.app-navigation a {
+  transition:
+    background 0.25s,
+    color 0.25s,
+    transform 0.25s;
+}
+@media (hover: hover) and (pointer: fine) {
+  .site-header nav a:hover::after,
+  .site-footer > div a:hover::after,
+  .closing-categories a:hover::after,
+  .back-link:hover::after,
+  .question-header > a:last-child:hover::after {
+    transform: scaleX(1);
+  }
+  .wordmark:hover {
+    transform: scale(1.035);
+    color: #e0ead3;
+  }
+  .text-action:hover,
+  .back-link:hover {
+    transform: translateX(4px);
+  }
+  a:hover > svg,
+  button:not(:disabled):hover > svg {
+    transform: translateX(3px);
+  }
+  .shadow-cta:hover > svg {
+    transform: rotate(45deg);
+  }
+  .vision-row:hover .vision-portrait {
+    filter: grayscale(1) brightness(0.7);
+    transform: rotate(0) translateY(-8px) scale(1.035);
+  }
+  .vision-row a:hover {
+    color: #102a1b;
+    background: #cddbc9;
+    transform: translateX(3px);
+  }
+  .filter-row button:hover:not(.selected) {
+    border-color: #b5cba8;
+    background: #2b4031;
+    color: #edf3e5;
+    transform: translateY(-2px);
+  }
+  .app-navigation a:hover {
+    background: #2c4233;
+    color: #f0f4e7;
+    transform: translateY(-3px);
+  }
+  .app-navigation a[aria-current]:hover {
+    background: #edf2e3;
+    color: #21362a;
+  }
+  .secondary-action:not(:disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 16px #0002;
+  }
+  .checkbox-label:hover {
+    color: #eff4e5;
+  }
+  .offering-card:hover .text-action {
+    transform: translateX(4px);
+  }
+  .inspiration-note a:hover,
+  .prose a:not(.primary-action):hover {
+    color: white;
+    text-decoration-thickness: 2px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  a:hover,
+  button:hover,
+  .vision-row:hover .vision-portrait,
+  .shadow-self:hover .self-sprite,
+  .shadow-self:focus-visible .self-sprite {
+    translate: none;
+    scale: none;
+  }
+  .shadow-self:hover .self-sprite,
+  .shadow-self:focus-visible .self-sprite {
+    transform: translateX(-50%);
+  }
+  .vision-row:hover .vision-portrait {
+    transform: none;
+  }
+}

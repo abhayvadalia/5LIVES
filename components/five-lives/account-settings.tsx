@@ -4,36 +4,37 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { AppNavigation } from './participant-home';
+import { BROWSER_PROFILE_KEY } from '@/lib/browser-profile';
 import { DRAFT_KEY } from '@/lib/intake';
-export function AccountSettings({ name }: { name: string | null }) {
+export function AccountSettings() {
   const [message, setMessage] = useState('');
   return (
     <>
       <p className="eyebrow">YOUR SPACE</p>
-      <h1>Account & privacy</h1>
-      <p className="page-intro">
-        {name ? `Signed in as ${name}` : 'You’re browsing with a local draft.'}
-      </p>
+      <h1>Your space</h1>
+      <p className="page-intro">No login. Your choices stay in this browser.</p>
       <div className="offering-grid">
         <section className="soft-panel">
           <h2>Your choices</h2>
           <p>
-            Review your five or check your interest requests. Choosing never
-            purchases an experience.
+            Return to your five, make room for a new possibility, or explore
+            your next step.
           </p>
           <Link className="text-action" href="/app/my-five">
             Review my five →
           </Link>
           <br />
           <Link className="text-action" href="/app/interests">
-            My interest requests →
+            My next steps →
           </Link>
         </section>
         <section className="soft-panel">
           <h2>On this device</h2>
           <p>
-            Local drafts expire after seven days. Your private scene is only
-            included if you explicitly choose to keep it here.
+            Drafts expire seven days after an edit. Lists you explicitly save
+            stay until you clear them or clear your browser’s site data. An
+            optional scene is kept only with your consent. Anyone using this
+            browser can see these choices.
           </p>
           <Button
             variant="outline"
@@ -41,8 +42,9 @@ export function AccountSettings({ name }: { name: string | null }) {
             onClick={() => {
               try {
                 localStorage.removeItem(DRAFT_KEY);
+                localStorage.removeItem(BROWSER_PROFILE_KEY);
                 setMessage(
-                  'The local draft was cleared from this device. Account-saved choices are unchanged.',
+                  'Your saved five and local draft were cleared from this browser.',
                 );
               } catch {
                 setMessage(
@@ -51,7 +53,7 @@ export function AccountSettings({ name }: { name: string | null }) {
               }
             }}
           >
-            Clear local draft
+            Clear my choices
           </Button>
         </section>
       </div>
@@ -64,8 +66,8 @@ export function AccountSettings({ name }: { name: string | null }) {
           browser use works too.
         </p>
         <p>
-          Offline mode provides a neutral fallback. Account data, bookings and
-          private scenes are never kept in the app’s offline cache.
+          Offline mode provides a neutral fallback. Saved choices are kept in
+          browser storage, separately from the app’s offline cache.
         </p>
       </section>
       {message && (
@@ -74,28 +76,8 @@ export function AccountSettings({ name }: { name: string | null }) {
         </p>
       )}
       <div className="action-row">
-        {name ? (
-          <a
-            className="secondary-action text-action"
-            href="/signout-with-chatgpt?return_to=%2F"
-            target="_top"
-            onClick={() => {
-              try {
-                localStorage.removeItem(DRAFT_KEY);
-              } catch {
-                /* Browser site-data settings remain available. */
-              }
-            }}
-          >
-            Sign out
-          </a>
-        ) : (
-          <Link className="primary-action" href="/sign-in">
-            Sign in to save
-          </Link>
-        )}
         <Link className="text-action" href="/privacy">
-          Privacy in this preview
+          Your data
         </Link>
       </div>
       <AppNavigation current="account" />

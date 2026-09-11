@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: '%s · Five Lives',
   },
   description:
-    'Five possibilities. One place to begin. Explore Sports, Art, Health, Travel and Tech, and make room for a part of yourself.',
+    'Dream of another life. Find a way to live a little of it. Explore the guidance, people and experiences taking shape across Sports, Art, Health, Travel and Tech.',
   manifest: '/manifest.webmanifest',
   appleWebApp: { capable: true, statusBarStyle: 'default', title: '5lives' },
   icons: { icon: '/icons/icon-192.png', apple: '/icons/icon-192.png' },

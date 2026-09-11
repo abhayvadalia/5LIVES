@@ -42,7 +42,7 @@ export function PwaSupport() {
     <>
       {offline && (
         <div className="connection-banner" role="status">
-          You’re offline. Keep choosing on this open page; account saves and
+          You’re offline. Keep choosing on this open page; new pages and
           interest requests need a connection.
         </div>
       )}

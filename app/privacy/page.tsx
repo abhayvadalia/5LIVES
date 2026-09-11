@@ -1,51 +1,62 @@
 import { Header, Footer } from '@/components/five-lives/shell';
-export const metadata = { title: 'Privacy in this preview' };
+import Link from 'next/link';
+export const metadata = { title: 'Your data' };
 export default function PrivacyPage() {
   return (
     <>
       <Header />
       <main id="main" className="page-width content-page narrow-page">
-        <p className="eyebrow">PRIVATE PREVIEW · NOT A PUBLIC LAUNCH POLICY</p>
+        <p className="eyebrow">YOUR CHOICES, IN YOUR BROWSER</p>
         <h1>
           A little clarity
           <br />
-          about your data.
+          <em>about your data.</em>
         </h1>
         <div className="prose">
-          <h2>Local drafts</h2>
+          <h2>No login needed</h2>
           <p>
-            Your category choices can be kept in this browser for seven days
-            after an edit. Your optional scene is excluded unless you explicitly
-            choose to keep it here. Clear the draft from Account or your
-            browser’s site-data settings.
+            Five Lives opens directly from its link. You can explore and keep
+            your choices without creating an account.
           </p>
-          <h2>Saved choices and interest</h2>
+          <h2>Drafts and saved lists</h2>
           <p>
-            When signed in, pressing “Save my five” stores your choices and
-            optional scene against your account on the server. An interest
-            request stores the option, city, availability and its status. We do
-            not collect your phone number or payment details in this preview.
+            Your draft stays in browser storage for seven days after an edit.
+            Pressing “Save my five” keeps a separate saved list until you clear
+            it or remove this site’s browser data. Lists do not sync across
+            devices. Your optional scene is only stored if you choose to keep
+            it.
           </p>
-          <h2>Who can access it?</h2>
+          <h2>What is shared?</h2>
           <p>
-            You can access your saved list and requests. Authorized operators
-            can review interest requests for matching. Private scenes are not
-            shown in the operator interest queue and are not permission for
-            marketing or public sharing.
+            This version does not send your choices or scene to Five Lives,
+            teachers, coaches or experience guides. Saving your five is not an
+            interest request or booking. The hosting service handles ordinary
+            page requests and may process technical request information to
+            operate the site.
           </p>
-          <h2>Offline and sign-out</h2>
+          <h2>Your browser, your space</h2>
           <p>
-            The app’s offline cache contains only neutral fallback content and
-            app icons. It does not cache account pages or API responses. Signing
-            out from Account also clears the local draft on this device.
+            Someone using the same browser profile can view your saved list. Use
+            Your space to clear your draft and saved choices, or remove the
+            site’s data in your browser settings. Private browsing or blocked
+            storage can prevent saving.
           </p>
-          <h2>Before a public launch</h2>
+          <h2>Offline</h2>
           <p>
-            Public sign-in, an approved retention schedule, a support contact,
-            and account export/deletion workflows are still required. Use
-            synthetic information when testing this private preview. Ask the
-            person who shared it with you about removing test records.
+            The app cache contains neutral fallback content and icons. Your
+            chosen list uses browser storage separately. New pages still require
+            a connection.
           </p>
+          <h2>Earlier private previews</h2>
+          <p>
+            Choices saved to an account in an earlier private preview remain
+            protected on the server; this browser-only version does not load or
+            delete them. For those earlier test records, contact the person who
+            shared the preview.
+          </p>
+          <Link href="/app/settings" className="primary-action">
+            Manage my browser choices
+          </Link>
         </div>
       </main>
       <Footer />
