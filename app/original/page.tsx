@@ -1,5 +1,4 @@
-import { ShadowHome } from '@/components/five-lives/shadow-home';
-export const metadata = { title: 'One you. Five lives.' };
-export default function OriginalHomePage() {
-  return <ShadowHome variant="original" />;
+import { redirect } from 'next/navigation';
+export default function PreviousHome() {
+  redirect('/');
 }

@@ -1,65 +1,76 @@
-import { Header, Footer } from '@/components/five-lives/shell';
 import Link from 'next/link';
-export const metadata = { title: 'Your data' };
+import { LegalPage } from '@/components/five-lives/legal-page';
+export const metadata = { title: 'Privacy and your data' };
 export default function PrivacyPage() {
   return (
-    <>
-      <Header />
-      <main id="main" className="page-width content-page narrow-page">
-        <p className="eyebrow">YOUR CHOICES, IN YOUR BROWSER</p>
-        <h1>
-          A little clarity
-          <br />
-          <em>about your data.</em>
-        </h1>
-        <div className="prose">
-          <h2>No login needed</h2>
-          <p>
-            Five Lives opens directly from its link. You can explore and keep
-            your choices without creating an account.
-          </p>
-          <h2>Drafts and saved lists</h2>
-          <p>
-            Your draft stays in browser storage for seven days after an edit.
-            Pressing “Save my five” keeps a separate saved list until you clear
-            it or remove this site’s browser data. Lists do not sync across
-            devices. Your optional scene is only stored if you choose to keep
-            it.
-          </p>
-          <h2>What is shared?</h2>
-          <p>
-            This version does not send your choices or scene to Five Lives,
-            teachers, coaches or experience guides. Saving your five is not an
-            interest request or booking. The hosting service handles ordinary
-            page requests and may process technical request information to
-            operate the site.
-          </p>
-          <h2>Your browser, your space</h2>
-          <p>
-            Someone using the same browser profile can view your saved list. Use
-            Your space to clear your draft and saved choices, or remove the
-            site’s data in your browser settings. Private browsing or blocked
-            storage can prevent saving.
-          </p>
-          <h2>Offline</h2>
-          <p>
-            The app cache contains neutral fallback content and icons. Your
-            chosen list uses browser storage separately. New pages still require
-            a connection.
-          </p>
-          <h2>Earlier private previews</h2>
-          <p>
-            Choices saved to an account in an earlier private preview remain
-            protected on the server; this browser-only version does not load or
-            delete them. For those earlier test records, contact the person who
-            shared the preview.
-          </p>
-          <Link href="/app/settings" className="primary-action">
-            Manage my browser choices
-          </Link>
-        </div>
-      </main>
-      <Footer />
-    </>
+    <LegalPage title="Privacy and your data.">
+      <h2>The exercise stays in your browser</h2>
+      <p>
+        No login is needed. Exercise drafts expire seven days after your last
+        edit. Saved aspirations, your chosen beginning and notes stay in this
+        browser until you clear them. They are not sent to Five Lives by the
+        exercise. Anyone using this browser profile may be able to read them.
+      </p>
+      <h2>When you register interest</h2>
+      <p>
+        Five Lives stores your email address, Kolkata as your city, the
+        membership, letter invitation or experience you selected, and an
+        experience price range if supplied. We also record the time, form source
+        and consent choices so we can respond to the request you made.
+      </p>
+      <p>
+        The required checkbox covers only that opening or letter invitation. The
+        optional checkbox covers other Five Lives openings. Both start unticked.
+        Joining a letter interest list is not newsletter subscription consent; a
+        separate confirmation will be needed before the fortnightly letter
+        begins.
+      </p>
+      <h2>Who can use it</h2>
+      <p>
+        Interest information is held for the Five Lives team to plan and respond
+        to openings. It is not published or passed to a coach, teacher or other
+        member. Hosting and database services process it to operate this site.
+        No payment details are collected. We have not added advertising trackers
+        or an analytics service.
+      </p>
+      <h2>Access, correction and deletion</h2>
+      <p>
+        After submitting, keep your request receipt.{' '}
+        <Link href="/requests">My requests</Link> lets you view and correct your
+        email, withdraw optional update consent, or delete the request and its
+        personal details. Deleting a request also withdraws permission to
+        contact you about it. The downloaded receipt contains a private
+        management link: keep it private.
+      </p>
+      <p>
+        Your browser choices are separate. Use{' '}
+        <Link href="/app/settings">Your space</Link> to clear them. Clearing
+        browser data alone does not erase an interest request already sent to
+        the server. Remove the request first, or keep its downloaded receipt.
+      </p>
+      <h2>Retention and service information</h2>
+      <p>
+        Interest requests are retained until removed or until our periodic
+        cleanup removes old requests. Requests older than 180 days are removed
+        during interest-list maintenance. Technical request information may be
+        processed by the host to keep the service working. Short-lived, hashed
+        network identifiers limit repeated submissions; raw IP addresses are not
+        stored in our interest database.
+      </p>
+      <h2>Pre-launch contact details</h2>
+      <p>
+        The business address and dedicated support and grievance contacts have
+        not yet been published. Paid membership and member posting remain
+        closed. Self-service access, correction and deletion for interest
+        requests are available through your receipt.
+      </p>
+      <h2>Earlier previews</h2>
+      <p>
+        Records saved to an account in an earlier private preview remain
+        protected separately. This public exercise does not load or delete those
+        test records. Contact the person who shared that private preview about
+        them.
+      </p>
+    </LegalPage>
   );
 }

@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 export function Header({
   motionControl,
-  howHref = '/#how-it-works',
 }: {
   motionControl?: React.ReactNode;
   howHref?: string;
@@ -15,34 +14,47 @@ export function Header({
       </Link>
       <nav aria-label="Main navigation">
         {motionControl}
-        <Link href="/experiences">Explore experiences</Link>
-        <Link href={howHref} className="desktop-link">
-          How it works
+        <Link href="/membership">Membership</Link>
+        <Link href="/experiences" className="desktop-link">
+          Experiences
         </Link>
-        <Link href="/app" className="nav-five">
+        <Link href="/letter" className="desktop-link">
+          The letter
+        </Link>
+        <Link href="/my-five" className="nav-five">
           My five <ArrowUpRight size={16} />
         </Link>
       </nav>
     </header>
   );
 }
-export function Footer({ homeLink }: { homeLink?: 'original' | 'imagined' }) {
+export function Footer(_props: { homeLink?: 'original' | 'imagined' } = {}) {
   return (
-    <footer className="site-footer">
+    <footer className="site-footer beginning-footer">
+      <section className="footer-invitation">
+        <p>
+          Begin one thing.
+          <br />
+          <em>With a little company.</em>
+        </p>
+        <Link href="/membership" className="beginning-button">
+          Explore membership <ArrowUpRight size={18} />
+        </Link>
+      </section>
       <Link className="wordmark" href="/">
         5<span>lives</span>.
       </Link>
-      <p>A little room. A whole new part of you.</p>
+      <p>Making room in Kolkata.</p>
       <div>
         <Link href="/help">About & help</Link>
         <Link href="/privacy">Privacy</Link>
-        {homeLink && (
-          <Link href={homeLink === 'imagined' ? '/' : '/original'}>
-            {homeLink === 'imagined' ? 'Main homepage' : 'Original homepage'}
-          </Link>
-        )}
+        <Link href="/terms">Terms</Link>
+        <Link href="/refunds">Refunds</Link>
+        <Link href="/grievance">Grievance</Link>
+        <Link href="/community-guidelines">Guidelines</Link>
+        <Link href="/requests">My requests</Link>
       </div>
-      <small>Made for possibilities, at every adult life stage.</small>
+      <small>Five Lives · Pre-launch · Adults 18+ · Kolkata</small>
     </footer>
   );
 }

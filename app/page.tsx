@@ -1,9 +1,9 @@
-import { ShadowHome } from '@/components/five-lives/shadow-home';
+import { BeginningHome } from '@/components/five-lives/beginning-home';
 export const metadata = {
-  title: 'Five lives. What if?',
+  title: 'Five lives. One beginning.',
   description:
-    'Imagine five other lives. Notice what draws you to them, and bring a small part of one into this week.',
+    'Imagine five other lives. Begin one, alongside people doing it too. Five Lives is taking shape in Kolkata.',
 };
 export default function HomePage() {
-  return <ShadowHome variant="imagined" />;
+  return <BeginningHome />;
 }

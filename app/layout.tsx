@@ -4,6 +4,7 @@ import './globals.css';
 import './motion.css';
 import './shadows.css';
 import './interiors.css';
+import './beginnings.css';
 import { PwaSupport } from '@/components/five-lives/pwa';
 
 const geistSans = Geist({
@@ -18,11 +19,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Five Lives — Make room for yourself',
+    default: 'Five Lives · One beginning',
     template: '%s · Five Lives',
   },
   description:
-    'Dream of another life. Find a way to live a little of it. Explore the guidance, people and experiences taking shape across Sports, Art, Health, Travel and Tech.',
+    'Imagine five other lives. Begin one, alongside people doing it too. Five Lives is taking shape in Kolkata.',
   manifest: '/manifest.webmanifest',
   appleWebApp: { capable: true, statusBarStyle: 'default', title: '5lives' },
   icons: { icon: '/icons/icon-192.png', apple: '/icons/icon-192.png' },

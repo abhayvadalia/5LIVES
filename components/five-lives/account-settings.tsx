@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { AppNavigation } from './participant-home';
 import { BROWSER_PROFILE_KEY } from '@/lib/browser-profile';
 import { DRAFT_KEY } from '@/lib/intake';
+import { FIVE_KEY, FIVE_DRAFT_KEY } from '@/lib/beginnings';
 export function AccountSettings() {
   const [message, setMessage] = useState('');
   return (
@@ -20,20 +21,20 @@ export function AccountSettings() {
             Return to your five, make room for a new possibility, or explore
             your next step.
           </p>
-          <Link className="text-action" href="/app/my-five">
+          <Link className="text-action" href="/my-five">
             Review my five →
           </Link>
           <br />
-          <Link className="text-action" href="/app/interests">
-            My next steps →
+          <Link className="text-action" href="/requests">
+            Manage my interest requests →
           </Link>
         </section>
         <section className="soft-panel">
           <h2>On this device</h2>
           <p>
             Drafts expire seven days after an edit. Lists you explicitly save
-            stay until you clear them or clear your browser’s site data. An
-            optional scene is kept only with your consent. Anyone using this
+            stay until you clear them or clear your browser’s site data. A
+            private note is kept only when you save it. Anyone using this
             browser can see these choices.
           </p>
           <Button
@@ -43,6 +44,8 @@ export function AccountSettings() {
               try {
                 localStorage.removeItem(DRAFT_KEY);
                 localStorage.removeItem(BROWSER_PROFILE_KEY);
+                localStorage.removeItem(FIVE_KEY);
+                localStorage.removeItem(FIVE_DRAFT_KEY);
                 setMessage(
                   'Your saved five and local draft were cleared from this browser.',
                 );

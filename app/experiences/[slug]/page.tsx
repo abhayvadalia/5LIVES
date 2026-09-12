@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowRight, Bookmark, Users, CalendarDays } from 'lucide-react';
 import { findOption, categories } from '@/lib/catalog';
 import { Header, Footer } from '@/components/five-lives/shell';
+import { InterestForm } from '@/components/five-lives/interest-form';
 export default async function ExperiencePage({
   params,
 }: {
@@ -17,65 +17,42 @@ export default async function ExperiencePage({
   return (
     <>
       <Header />
-      <main className="page-width content-page" id="main">
+      <main className="page-width beginning-page" id="main">
         <Link className="back-link" href="/experiences">
-          ← All possibilities
+          ← All experiences
         </Link>
-        <span className="tag" style={{ background: category.color }}>
-          {category.name}
-        </span>
-        <div className="detail-grid">
-          <section>
-            <h1>{option.title}</h1>
-            <p className="page-intro">{option.detail}</p>
-            <div className="detail-fact">
-              <Bookmark />
-              <div>
-                <h2>Something to keep</h2>
-                <p>{option.artifact}.</p>
-              </div>
-            </div>
-            <div className="detail-fact">
-              <Users />
-              <div>
-                <h2>A moment to share</h2>
-                <p>{option.witness}</p>
-              </div>
-            </div>
-            <div className="detail-fact">
-              <CalendarDays />
-              <div>
-                <h2>A little support. A real beginning.</h2>
-                <p>
-                  We’re shaping the guidance and experiences that can help you
-                  take this step. When an opportunity is ready, you’ll see who’s
-                  guiding it, what to expect, where it happens and the full
-                  price.
-                </p>
-              </div>
-            </div>
-          </section>
-          <aside className="soft-panel">
-            <p className="eyebrow">IN DEVELOPMENT</p>
-            <h2>
-              A possibility.
-              <br />A date to come.
-            </h2>
+        <section className="editorial-hero">
+          <p className="eyebrow">
+            {category.name.toUpperCase()} · KOLKATA · COMING NEXT
+          </p>
+          <h1>{option.title}</h1>
+          <p className="editorial-intro">{option.detail}</p>
+        </section>
+        <div className="experience-detail-grid">
+          <div className="legal-copy">
+            <h2>What you would do</h2>
+            <p>{option.detail}</p>
+            <h2>What you would take home</h2>
+            <p>{option.artifact}.</p>
+            <h2>A moment with your people</h2>
+            <p>{option.witness}</p>
+            <h2>Before you decide</h2>
             <p>
-              We’re working on ways to bring this possibility to life. Keep it
-              in your five while we develop the right opportunities. No dates
-              are confirmed yet.
+              We will publish the teacher or host, photographs, place, dates,
+              duration, group size and full price before bookings open. You will
+              also see what is included, access information, what to bring and
+              the cancellation terms.
             </p>
-            <Link
-              className="primary-action"
-              href={`/choose?category=${category.id}`}
-            >
-              Choose my five <ArrowRight size={18} />
-            </Link>
-            <p className="small-copy">
-              Choosing does not reserve a place or commit you to a purchase.
+            <p>
+              There is no confirmed booking or payment available yet. Members
+              will have a week of first access and 15% off the published total.
             </p>
-          </aside>
+          </div>
+          <InterestForm
+            kind="experience"
+            subject={slug}
+            title="Make room for this one."
+          />
         </div>
       </main>
       <Footer />
