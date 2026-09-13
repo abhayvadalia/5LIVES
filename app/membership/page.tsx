@@ -5,12 +5,12 @@ import { InterestForm } from '@/components/five-lives/interest-form';
 export const metadata = {
   title: 'A little company. Membership',
   description:
-    'Your circle, personal introductions and people beginning with you in Kolkata. Founding membership is opening soon.',
+    'Your circle, personal introductions and people beginning with you. Founding membership is opening soon.',
 };
 const perks = [
   [
     'Your circle, by name.',
-    'Up to five other people in Kolkata who want to begin the same thing, in the same few weeks. A small group to make a plan with, show up with, and get to know.',
+    'Up to five other people who want to begin the same thing, in the same few weeks. A small group to make a plan with, show up with, and get to know.',
   ],
   [
     'The right number to ring.',
@@ -47,7 +47,7 @@ export default function MembershipPage() {
       <Header />
       <main id="main" className="page-width beginning-page membership-page">
         <section className="editorial-hero">
-          <p className="eyebrow">FIVE LIVES MEMBERSHIP · KOLKATA</p>
+          <p className="eyebrow">FIVE LIVES MEMBERSHIP</p>
           <h1>
             A beginning is easier
             <br />
@@ -99,10 +99,9 @@ export default function MembershipPage() {
           <p className="eyebrow">A NOTE BEFORE YOU JOIN</p>
           <h2>Small, from the start.</h2>
           <p>
-            Five Lives is taking shape in Kolkata. Paid membership has not
-            opened on this site, and circles have not been offered here yet.
-            Introductions will be made by hand. Your circle may take time to
-            come together.
+            Five Lives is taking shape. Paid membership has not opened on this
+            site, and circles have not been offered here yet. Introductions will
+            be made by hand. Your circle may take time to come together.
           </p>
           <p>
             We will share confirmed enrolment numbers when membership opens. If
@@ -137,10 +136,6 @@ export default function MembershipPage() {
             [
               'What does the annual fee cover?',
               'The eight membership benefits above. Coaches are booked and paid directly. Hosted experiences are separate, with a 15% member discount.',
-            ],
-            [
-              'Can I join from another city?',
-              'We are starting in Kolkata. Circles and hosted experiences will be local so people can actually meet.',
             ],
             [
               'Do I have to begin all five?',

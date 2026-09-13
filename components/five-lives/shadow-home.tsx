@@ -220,7 +220,7 @@ export function ShadowHome({
               Imagine five other lives. Choose one to begin.
               <span>
                 We help you find the people, lessons and experiences to live a
-                little of it in Kolkata.
+                little of it.
               </span>
             </p>
             <div className="vision-type" aria-hidden="true">
@@ -363,8 +363,7 @@ export function ShadowHome({
               <h2>Make it part of life.</h2>
               <p>
                 Find a first step that fits your week. We’re bringing together
-                lessons, guides and shared experiences in Kolkata to help you
-                begin.
+                lessons, guides and shared experiences to help you begin.
               </p>
             </article>
             <p className="imagination-bridge">
@@ -415,11 +414,8 @@ export function ShadowHome({
                 <em>This week.</em>
               </h2>
               <p>
-                A song in your own voice. A coach who helps you begin. People in
-                Kolkata making room for the same thing.
-                <br />
-                Imagine five lives. Choose one beginning. We help you find the
-                people and experiences to live a little of it.
+                A song in your own voice. A coach who helps you begin. People
+                making room for the same thing.
               </p>
             </>
           ) : (
@@ -443,7 +439,7 @@ export function ShadowHome({
           <Link className="shadow-cta" href="/choose?start=five">
             Find my five <ArrowUpRight size={22} />
           </Link>
-          <span>Free to explore. Begin at your own pace.</span>
+
           <div className="closing-categories">
             {categories.map((c) => (
               <Link href={`/categories/${c.id}`} key={c.id}>
@@ -454,22 +450,6 @@ export function ShadowHome({
         </section>
         <FounderNote />
       </main>
-      {imagined && (
-        <aside
-          className="inspiration-note page-width"
-          aria-label="Inspiration for this page"
-        >
-          <p>
-            This page takes inspiration from the imaginary-lives exercise in
-            Julia Cameron’s <cite>The Artist’s Way</cite>,{' '}
-            <a href="https://www.helenunwincoaching.com/post/if-you-had-5-lives-what-would-you-do-with-them">
-              Helen Unwin’s reflection on five lives
-            </a>
-            , and Azim Rushdi’s essay on trying a small part of an imagined
-            life. Five Lives is an independent project.
-          </p>
-        </aside>
-      )}
       <section
         className="home-letter page-width"
         aria-labelledby="home-letter-title"
@@ -486,9 +466,8 @@ export function ShadowHome({
             of yourself you’d like to spend more time with.
           </p>
           <p>
-            We’re preparing a free letter from Kolkata: stories of people making
-            room, a small beginning to try, and a question to take into your
-            week.
+            Stories of people making room. Something to try. A question to take
+            into your week.
           </p>
           <Link className="text-action" href="/letter">
             A taste of what’s to come <ArrowUpRight size={18} />

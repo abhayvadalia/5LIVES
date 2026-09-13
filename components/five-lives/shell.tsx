@@ -41,7 +41,7 @@ export function Footer(_props: { homeLink?: 'original' | 'imagined' } = {}) {
       <Link className="wordmark" href="/">
         5<span>lives</span>.
       </Link>
-      <p>Making room in Kolkata.</p>
+
       <div>
         <Link href="/letter">Stories & small beginnings</Link>
         <Link href="/help">About & help</Link>
@@ -52,7 +52,7 @@ export function Footer(_props: { homeLink?: 'original' | 'imagined' } = {}) {
         <Link href="/community-guidelines">Guidelines</Link>
         <Link href="/requests">My requests</Link>
       </div>
-      <small>Five Lives · Pre-launch · Adults 18+ · Kolkata</small>
+      <small>Five Lives · Pre-launch · Adults 18+</small>
     </footer>
   );
 }

@@ -5,7 +5,7 @@ import { Header, Footer } from '@/components/five-lives/shell';
 export const metadata = {
   title: 'Something to take home. Experiences',
   description:
-    'Hosted beginnings taking shape in Kolkata. A song, a painting, a game. Join an interest list for confirmed details.',
+    'Hosted beginnings taking shape. A song, a painting, a game. Join an interest list for confirmed details.',
 };
 const first = ['song', 'painting', 'cricket'];
 export default function ExperiencesPage() {
@@ -17,7 +17,7 @@ export default function ExperiencesPage() {
       <Header />
       <main id="main" className="page-width beginning-page">
         <section className="editorial-hero">
-          <p className="eyebrow">HOSTED BY FIVE LIVES · KOLKATA</p>
+          <p className="eyebrow">HOSTED BY FIVE LIVES</p>
           <h1>
             An afternoon.
             <br />
@@ -44,7 +44,7 @@ export default function ExperiencesPage() {
               >
                 <span className="experience-number">0{i + 1}</span>
                 <div>
-                  <p className="eyebrow">{o.category} · COMING TO KOLKATA</p>
+                  <p className="eyebrow">{o.category} · COMING NEXT</p>
                   <h2>{o.title}</h2>
                   <p>{o.detail}</p>
                   <span className="take-home">TAKE HOME · {o.artifact}</span>

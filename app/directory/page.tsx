@@ -17,8 +17,8 @@ export default function DirectoryPage() {
             <em>By name.</em>
           </h1>
           <p className="editorial-intro">
-            A place for teachers, coaches, studios and grounds we have checked
-            in Kolkata. Book directly. We take no commission, ever.
+            Teachers, coaches and places to practise, checked by Five Lives.
+            Book directly. We take no commission.
           </p>
         </section>
         <section className="founding-note">

@@ -23,7 +23,6 @@ export function validateCapture(value: unknown): Capture {
     typeof v.email !== 'string' ||
     v.email.length > 254 ||
     !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email.trim()) ||
-    v.city !== 'Kolkata' ||
     typeof v.subject !== 'string' ||
     v.subject.length > 160 ||
     !v.subject.trim() ||
@@ -43,7 +42,7 @@ export function validateCapture(value: unknown): Capture {
     kind: v.kind as Capture['kind'],
     subject: v.subject.trim(),
     email: v.email.trim().toLowerCase(),
-    city: 'Kolkata',
+    city: '',
     expectedPrice: v.kind === 'experience' ? String(v.expectedPrice) : '',
     consentUpdates: v.consentUpdates,
     adult: true,

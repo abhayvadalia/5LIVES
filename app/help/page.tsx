@@ -12,7 +12,7 @@ export default function HelpPage() {
         help you explore them in depth.
       </p>
       <p>
-        <Link href="/#founder">Read Abhay’s note</Link>
+        <Link href="/#founder">Read the founder’s note</Link>
       </p>
       <h2>Begin with imagination</h2>
       <p>
@@ -22,10 +22,10 @@ export default function HelpPage() {
       </p>
       <h2>Find a little company</h2>
       <p>
-        Five Lives is bringing together people in Kolkata who want to begin
-        something they have imagined. Membership will help with circles and
-        introductions. Hosted experiences will help you make something, finish
-        it and take it home.
+        Five Lives is bringing together people who want to begin something they
+        have imagined. Membership will help with circles and introductions.
+        Hosted experiences will help you make something, finish it and take it
+        home.
       </p>
       <h2>What is ready today</h2>
       <p>

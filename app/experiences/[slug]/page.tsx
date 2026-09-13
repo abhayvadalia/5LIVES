@@ -22,9 +22,7 @@ export default async function ExperiencePage({
           ← All experiences
         </Link>
         <section className="editorial-hero">
-          <p className="eyebrow">
-            {category.name.toUpperCase()} · KOLKATA · COMING NEXT
-          </p>
+          <p className="eyebrow">{category.name.toUpperCase()} · COMING NEXT</p>
           <h1>{option.title}</h1>
           <p className="editorial-intro">{option.detail}</p>
         </section>

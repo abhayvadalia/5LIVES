@@ -51,7 +51,6 @@ export function InterestForm({
           subject,
           source,
           email,
-          city: 'Kolkata',
           expectedPrice: price,
           adult,
           consentRequest: consent,
@@ -133,7 +132,6 @@ export function InterestForm({
             {
               ...receipt,
               email,
-              city: 'Kolkata',
               expectedPrice: price,
               consentUpdates: updates,
               manageUrl: `${location.origin}/requests#${encodeURIComponent(JSON.stringify(receipt))}`,
@@ -154,9 +152,7 @@ export function InterestForm({
   return (
     <section className="interest-form" id="register-interest">
       <p className="eyebrow">
-        {kind === 'letter'
-          ? 'THE FIVE LIVES LETTER · FREE'
-          : 'KOLKATA · OPENING SOON'}
+        {kind === 'letter' ? 'THE FIVE LIVES LETTER · FREE' : 'OPENING SOON'}
       </p>
       <h2>
         {receipt
@@ -195,7 +191,7 @@ export function InterestForm({
         <form onSubmit={submit}>
           <p>
             {kind === 'letter'
-              ? 'The first issue is being prepared. Leave your email for an invitation when it is ready. You will confirm separately before receiving the fortnightly letter.'
+              ? 'An invitation when the first issue is ready. You’ll confirm before receiving future letters.'
               : kind === 'membership'
                 ? 'Leave your email to hear when founding membership opens. Joining this list does not reserve a founding place or authorise a payment.'
                 : 'Hear when the host, place, price and date are confirmed. Joining the list does not reserve a place.'}
@@ -212,12 +208,6 @@ export function InterestForm({
               placeholder="you@example.com"
             />
           </label>
-          {kind !== 'letter' && (
-            <label>
-              City
-              <Input value="Kolkata" readOnly />
-            </label>
-          )}
           {kind === 'experience' && (
             <label>
               What would you expect to spend?
@@ -246,14 +236,14 @@ export function InterestForm({
           <label className="consent-row">
             <Checkbox checked={consent} onCheckedChange={setConsent} required />
             <span>
-              Save my email{kind === 'experience' ? ', price range' : ''} and
-              city, and contact me about this{' '}
+              Save my email{kind === 'experience' ? ' and price range' : ''},
+              and contact me about this{' '}
               {kind === 'letter'
                 ? 'letter invitation'
                 : kind === 'membership'
                   ? 'membership opening'
                   : 'experience'}
-              {kind === 'letter' ? ' from Kolkata.' : '.'}
+              .
             </span>
           </label>
           <label className="consent-row">

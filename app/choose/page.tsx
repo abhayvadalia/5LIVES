@@ -31,9 +31,7 @@ export default function ChoosePage() {
             <br />
             Name five lives you would enjoy living. No need to know how yet.
           </p>
-          <p className="form-small">
-            Free to explore. Your choices stay in this browser.
-          </p>
+          <p className="form-small">Your choices stay in this browser.</p>
         </div>
         <FiveExercise />
       </main>

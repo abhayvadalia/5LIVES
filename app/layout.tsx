@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     template: '%s · Five Lives',
   },
   description:
-    'Imagine five other lives. Begin one, alongside people doing it too. Five Lives is taking shape in Kolkata.',
+    'Imagine five other lives. Find the people, lessons and experiences to live a little of each.',
   manifest: '/manifest.webmanifest',
   appleWebApp: { capable: true, statusBarStyle: 'default', title: '5lives' },
   icons: { icon: '/icons/icon-192.png', apple: '/icons/icon-192.png' },

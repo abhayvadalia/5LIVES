@@ -47,7 +47,7 @@ export async function POST(request: Request) {
           input.city,
           input.expectedPrice,
           input.consentUpdates ? 1 : 0,
-          'launch-request-2026-09-12',
+          'launch-request-2026-09-14',
           createdAt,
           input.source,
           createdAt,

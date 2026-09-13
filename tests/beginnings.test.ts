@@ -47,12 +47,11 @@ void test('stale browser updates and invalid saved content are rejected', () => 
   assert.throws(() => readFive(storage));
   assert.throws(() => validateFive({ ...five, revision: 1, lives: [''] }));
 });
-void test('capture requires adult confirmation, specific consent, Kolkata and a real price band', () => {
+void test('capture requires adult confirmation, specific consent and a real price band without assigning a city', () => {
   const value = {
     kind: 'experience',
     subject: 'song',
     email: 'Person@example.com',
-    city: 'Kolkata',
     expectedPrice: '₹2–5k',
     adult: true,
     consentRequest: true,
@@ -60,10 +59,11 @@ void test('capture requires adult confirmation, specific consent, Kolkata and a 
   };
   assert.equal(validateCapture(value).email, 'person@example.com');
   assert.equal(validateCapture(value).consentUpdates, false);
+  assert.equal(validateCapture(value).city, '');
+  assert.equal(validateCapture({ ...value, city: 'Kolkata' }).city, '');
   for (const invalid of [
     { adult: false },
     { consentRequest: false },
-    { city: 'Mumbai' },
     { expectedPrice: '' },
     { subject: 'unknown' },
     { email: 'invalid' },
@@ -77,7 +77,6 @@ void test('newsletter requests record the homepage source without accepting arbi
     kind: 'letter',
     subject: 'first-letter',
     email: 'reader@example.com',
-    city: 'Kolkata',
     adult: true,
     consentRequest: true,
     consentUpdates: false,

@@ -5,9 +5,9 @@ export default function TermsPage() {
     <LegalPage title="Terms for this opening.">
       <h2>What is available</h2>
       <p>
-        Five Lives is a pre-launch project in Kolkata for adults aged 18 and
-        over. You can complete the free exercise, keep choices in your browser
-        and register interest in future openings.
+        Five Lives is a pre-launch project for adults aged 18 and over. You can
+        complete the free exercise, keep choices in your browser and register
+        interest in future openings.
       </p>
       <h2>Interest is not a purchase</h2>
       <p>

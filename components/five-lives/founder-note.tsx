@@ -6,8 +6,7 @@ export function FounderNote() {
       aria-labelledby="founder-note-title"
     >
       <div className="founder-letter-margin">
-        <p className="eyebrow">A NOTE FROM ABHAY</p>
-        <span>Why I’m building Five Lives</span>
+        <p className="eyebrow">WHY FIVE LIVES</p>
       </div>
       <div className="founder-letter-body">
         <h2 id="founder-note-title">
@@ -17,13 +16,8 @@ export function FounderNote() {
         </h2>
         <p>
           There are so many things I want to learn, do and experience. One
-          lifetime feels too short to master them all. But I still want to know
-          what it feels like to live a little of each.
-        </p>
-        <p>
-          I kept thinking about a way to go deeper: to spend time with someone
-          who knows their craft, learn from them, and really enter that world.
-          If something like that existed, I’d want to explore it myself.
+          lifetime feels too short to master them all. I wanted a way to go
+          deeper with people who know their craft, and live a little of each.
         </p>
         <p>
           Then I read an article about imagining five other lives. A random reel
@@ -31,13 +25,10 @@ export function FounderNote() {
           nudging me. That was when I thought: let’s do it.
         </p>
         <p>
-          So I’m building Five Lives for myself, and for the world around me. A
-          way to follow our curiosity, learn with people who can guide us, and
+          So I’m building Five Lives for myself, and for the world around me. To
           actually live some of the lives we keep imagining.
         </p>
-        <p className="founder-signature">
-          Abhay<span>Founder, Five Lives</span>
-        </p>
+        <p className="founder-signature">Abhay</p>
       </div>
     </section>
   );

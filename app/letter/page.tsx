@@ -5,7 +5,7 @@ import { InterestForm } from '@/components/five-lives/interest-form';
 export const metadata = {
   title: 'Stories & small beginnings — Five Lives',
   description:
-    'A free letter from Kolkata for the lives you keep imagining. Stories, small beginnings and a little room for possibility. First issue coming soon.',
+    'A free letter for the lives you keep imagining. Stories, small beginnings and a little room for possibility. First issue coming soon.',
 };
 export default function LetterPage() {
   return (
@@ -43,10 +43,10 @@ export default function LetterPage() {
             </p>
             <p>
               Five Lives helps you find ways to bring those possibilities into
-              the life you already have. We’re starting in Kolkata, gathering
-              people, lessons and experiences that can make a beginning easier.
-              Time with someone who knows their craft can help you go deeper
-              into a world you’ve always wanted to explore.
+              the life you already have. We’re gathering people, lessons and
+              experiences that can make a beginning easier. Time with someone
+              who knows their craft can help you go deeper into a world you’ve
+              always wanted to explore.
             </p>
             <p>
               The letter will follow that same curiosity. A story that makes
@@ -54,7 +54,7 @@ export default function LetterPage() {
               encouragement to give it a place in your week.
             </p>
             <Link className="text-action" href="/#founder">
-              Why I started Five Lives — Abhay <ArrowUpRight size={18} />
+              How Five Lives began <ArrowUpRight size={18} />
             </Link>
           </div>
         </section>
@@ -69,7 +69,7 @@ export default function LetterPage() {
             ],
             [
               'One beginning.',
-              'Something simple to try. As our Kolkata community grows, we’ll include people and places that can help you take it further.',
+              'Something simple to try. As our community grows, we’ll include people and places that can help you take it further.',
             ],
             [
               'One question.',
@@ -117,15 +117,7 @@ export default function LetterPage() {
               <br />
               <em>Every other week.</em>
             </h2>
-            <p>
-              Free to read. Rooted in Kolkata. Written to help you live a little
-              of the lives you imagine.
-            </p>
-            <p>
-              We’re preparing the first issue. Leave your email for an
-              invitation when it’s ready; you’ll choose then whether to receive
-              future letters.
-            </p>
+            <p>Stories to help you live a little of the lives you imagine.</p>
           </div>
           <InterestForm
             kind="letter"
