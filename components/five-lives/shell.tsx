@@ -34,8 +34,8 @@ export function Footer(_props: { homeLink?: 'original' | 'imagined' } = {}) {
           <br />
           <em>With a little company.</em>
         </p>
-        <Link href="/membership" className="beginning-button">
-          Explore membership <ArrowUpRight size={18} />
+        <Link href="/membership#register-interest" className="beginning-button">
+          Join the waitlist <ArrowUpRight size={18} />
         </Link>
       </section>
       <Link className="wordmark" href="/">

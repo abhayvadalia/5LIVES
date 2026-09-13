@@ -5,7 +5,7 @@ import { Header, Footer } from '@/components/five-lives/shell';
 export const metadata = {
   title: 'Something to take home. Experiences',
   description:
-    'Hosted beginnings taking shape. A song, a painting, a game. Join an interest list for confirmed details.',
+    'A song, a painting, a game. Experiences launching soon. Join the waitlist.',
 };
 const first = ['song', 'painting', 'cricket'];
 export default function ExperiencesPage() {
@@ -17,7 +17,7 @@ export default function ExperiencesPage() {
       <Header />
       <main id="main" className="page-width beginning-page">
         <section className="editorial-hero">
-          <p className="eyebrow">HOSTED BY FIVE LIVES</p>
+          <p className="eyebrow">EXPERIENCES · LAUNCHING SOON</p>
           <h1>
             An afternoon.
             <br />
@@ -32,7 +32,7 @@ export default function ExperiencesPage() {
         <section className="experience-list">
           <div className="experience-section-title">
             <h2>First in the making.</h2>
-            <p>Interest lists are open. Dates and hosts are not confirmed.</p>
+            <p>Choose an experience to join its waitlist.</p>
           </div>
           {first.map((id, i) => {
             const o = options.find((x) => x.id === id)!;
@@ -44,7 +44,7 @@ export default function ExperiencesPage() {
               >
                 <span className="experience-number">0{i + 1}</span>
                 <div>
-                  <p className="eyebrow">{o.category} · COMING NEXT</p>
+                  <p className="eyebrow">{o.category} · LAUNCHING SOON</p>
                   <h2>{o.title}</h2>
                   <p>{o.detail}</p>
                   <span className="take-home">TAKE HOME · {o.artifact}</span>

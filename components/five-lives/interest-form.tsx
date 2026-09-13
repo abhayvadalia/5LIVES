@@ -6,15 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import {
   CAPTURE_RECEIPTS_KEY,
-  PRICE_BANDS,
   type CaptureReceipt,
 } from '@/lib/interest-capture';
 
@@ -30,7 +22,6 @@ export function InterestForm({
   title?: string;
 }) {
   const [email, setEmail] = useState('');
-  const [price, setPrice] = useState<string | null>(null);
   const [adult, setAdult] = useState(false);
   const [consent, setConsent] = useState(false);
   const [updates, setUpdates] = useState(false);
@@ -51,7 +42,6 @@ export function InterestForm({
           subject,
           source,
           email,
-          expectedPrice: price,
           adult,
           consentRequest: consent,
           consentUpdates: updates,
@@ -132,7 +122,6 @@ export function InterestForm({
             {
               ...receipt,
               email,
-              expectedPrice: price,
               consentUpdates: updates,
               manageUrl: `${location.origin}/requests#${encodeURIComponent(JSON.stringify(receipt))}`,
             },
@@ -152,13 +141,13 @@ export function InterestForm({
   return (
     <section className="interest-form" id="register-interest">
       <p className="eyebrow">
-        {kind === 'letter' ? 'THE FIVE LIVES LETTER · FREE' : 'OPENING SOON'}
+        {kind === 'letter' ? 'THE FIVE LIVES LETTER · FREE' : 'LAUNCHING SOON'}
       </p>
       <h2>
         {receipt
           ? kind === 'letter'
             ? 'Your invitation request is saved.'
-            : 'You are on the list.'
+            : 'You’re on the waitlist.'
           : title}
       </h2>
       {receipt ? (
@@ -166,7 +155,7 @@ export function InterestForm({
           <p>
             {kind === 'letter'
               ? 'We can contact you when the first letter is ready. You’ll confirm separately before receiving future issues. No email has been sent yet.'
-              : 'Your interest has been saved. This is not a booking or paid membership. We can contact you about this opening when details are ready.'}
+              : 'We’ll let you know when it launches. No place is booked and no payment is due.'}
           </p>
           <Button
             variant="outline"
@@ -193,8 +182,8 @@ export function InterestForm({
             {kind === 'letter'
               ? 'An invitation when the first issue is ready. You’ll confirm before receiving future letters.'
               : kind === 'membership'
-                ? 'Leave your email to hear when founding membership opens. Joining this list does not reserve a founding place or authorise a payment.'
-                : 'Hear when the host, place, price and date are confirmed. Joining the list does not reserve a place.'}
+                ? 'Leave your email to hear when membership launches.'
+                : 'Leave your email to hear when this experience launches.'}
           </p>
           <label>
             Email address
@@ -208,23 +197,6 @@ export function InterestForm({
               placeholder="you@example.com"
             />
           </label>
-          {kind === 'experience' && (
-            <label>
-              What would you expect to spend?
-              <Select value={price} onValueChange={setPrice} required>
-                <SelectTrigger className="capture-select">
-                  <SelectValue placeholder="Choose a price range" />
-                </SelectTrigger>
-                <SelectContent>
-                  {PRICE_BANDS.map((band) => (
-                    <SelectItem value={band} key={band}>
-                      {band}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </label>
-          )}
           <label className="capture-honeypot" aria-hidden="true">
             Website
             <input name="website" tabIndex={-1} autoComplete="off" />
@@ -236,8 +208,7 @@ export function InterestForm({
           <label className="consent-row">
             <Checkbox checked={consent} onCheckedChange={setConsent} required />
             <span>
-              Save my email{kind === 'experience' ? ' and price range' : ''},
-              and contact me about this{' '}
+              Save my email, and contact me about this{' '}
               {kind === 'letter'
                 ? 'letter invitation'
                 : kind === 'membership'
@@ -258,15 +229,13 @@ export function InterestForm({
           <Button
             type="submit"
             className="beginning-button"
-            disabled={
-              busy || !consent || !adult || (kind === 'experience' && !price)
-            }
+            disabled={busy || !consent || !adult}
           >
             {busy
               ? 'Saving…'
               : kind === 'letter'
                 ? 'Keep me in the loop'
-                : 'Register my interest'}
+                : 'Join the waitlist'}
             <ArrowRight />
           </Button>
         </form>

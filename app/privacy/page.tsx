@@ -14,9 +14,8 @@ export default function PrivacyPage() {
       <h2>When you register interest</h2>
       <p>
         Five Lives stores your email address, the membership, letter invitation
-        or experience you selected, and an experience price range if supplied.
-        We also record the time, form source and consent choices so we can
-        respond to the request you made.
+        or experience you selected. We also record the time, form source and
+        consent choices so we can respond to the request you made.
       </p>
       <p>
         The required checkbox covers only that opening or letter invitation. The

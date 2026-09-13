@@ -1,5 +1,4 @@
 import { findOption } from './catalog';
-export const PRICE_BANDS = ['₹2–5k', '₹5–10k', '₹10–20k', '₹20k+'] as const;
 export const CAPTURE_RECEIPTS_KEY = '5lives.requests.v1';
 export type Capture = {
   kind: 'membership' | 'letter' | 'experience';
@@ -26,8 +25,6 @@ export function validateCapture(value: unknown): Capture {
     typeof v.subject !== 'string' ||
     v.subject.length > 160 ||
     !v.subject.trim() ||
-    (v.kind === 'experience' &&
-      !PRICE_BANDS.includes(v.expectedPrice as (typeof PRICE_BANDS)[number])) ||
     v.website ||
     (v.source !== undefined && !(v.kind === 'letter' && v.source === '/'))
   )
@@ -43,7 +40,7 @@ export function validateCapture(value: unknown): Capture {
     subject: v.subject.trim(),
     email: v.email.trim().toLowerCase(),
     city: '',
-    expectedPrice: v.kind === 'experience' ? String(v.expectedPrice) : '',
+    expectedPrice: '',
     consentUpdates: v.consentUpdates,
     adult: true,
     consentRequest: true,

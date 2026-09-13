@@ -22,9 +22,14 @@ export default async function ExperiencePage({
           ← All experiences
         </Link>
         <section className="editorial-hero">
-          <p className="eyebrow">{category.name.toUpperCase()} · COMING NEXT</p>
+          <p className="eyebrow">
+            {category.name.toUpperCase()} · LAUNCHING SOON
+          </p>
           <h1>{option.title}</h1>
           <p className="editorial-intro">{option.detail}</p>
+          <a className="beginning-text-link" href="#register-interest">
+            Join the waitlist →
+          </a>
         </section>
         <div className="experience-detail-grid">
           <div className="legal-copy">
@@ -41,15 +46,11 @@ export default async function ExperiencePage({
               also see what is included, access information, what to bring and
               the cancellation terms.
             </p>
-            <p>
-              There is no confirmed booking or payment available yet. Members
-              will have a week of first access and 15% off the published total.
-            </p>
           </div>
           <InterestForm
             kind="experience"
             subject={slug}
-            title="Make room for this one."
+            title="Be first to hear."
           />
         </div>
       </main>

@@ -6,22 +6,20 @@ export default function TermsPage() {
       <h2>What is available</h2>
       <p>
         Five Lives is a pre-launch project for adults aged 18 and over. You can
-        complete the free exercise, keep choices in your browser and register
-        interest in future openings.
+        complete the free exercise, keep choices in your browser and join
+        waitlists for future openings.
       </p>
-      <h2>Interest is not a purchase</h2>
+      <h2>Joining a waitlist</h2>
       <p>
-        Submitting a form does not create a paid membership, reserve a founding
-        price or book an experience. Hosts, dates, capacity and availability are
-        not confirmed until explicitly published. No payment or recurring
-        mandate is collected by this version.
+        Submitting a form does not create a paid membership or book an
+        experience. Hosts, dates, capacity and availability are not confirmed
+        until explicitly published. No payment or recurring mandate is collected
+        by this version.
       </p>
-      <h2>Proposed paid membership</h2>
+      <h2>Membership launch</h2>
       <p>
-        The proposed annual founding price is ₹1,999 for the first 100 paid
-        members, retained as their annual price for life. The proposed regular
-        annual price is ₹2,999. These totals include 18% GST. Complete billing,
-        renewal and cancellation terms will be shown before payment is enabled.
+        Membership is launching soon. Full details, including billing, renewal
+        and cancellation terms, will be shared before enrolment opens.
       </p>
       <h2>Coaches and hosted experiences</h2>
       <p>

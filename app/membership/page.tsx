@@ -5,7 +5,7 @@ import { InterestForm } from '@/components/five-lives/interest-form';
 export const metadata = {
   title: 'A little company. Membership',
   description:
-    'Your circle, personal introductions and people beginning with you. Founding membership is opening soon.',
+    'Your circle, personal introductions and people beginning with you. Membership is launching soon.',
 };
 const perks = [
   [
@@ -14,7 +14,7 @@ const perks = [
   ],
   [
     'The right number to ring.',
-    'Coaches, teachers, studios and grounds, with names, prices and our notes. The little black book will be included in membership. Book directly. We take no commission, ever.',
+    'Coaches, teachers, studios and grounds, with our notes. The little black book will be included in membership. Book directly. We take no commission, ever.',
   ],
   [
     'Something you did this week.',
@@ -23,10 +23,6 @@ const perks = [
   [
     'An hour with someone who teaches.',
     'One live session each month with a working coach or teacher, answering what members bring. A recording for the times you cannot make it.',
-  ],
-  [
-    'A little less to pay.',
-    'Members get 15% off every Five Lives hosted experience. Your membership covers the company; produced experiences are priced separately.',
   ],
   [
     'A week to make room.',
@@ -47,7 +43,7 @@ export default function MembershipPage() {
       <Header />
       <main id="main" className="page-width beginning-page membership-page">
         <section className="editorial-hero">
-          <p className="eyebrow">FIVE LIVES MEMBERSHIP</p>
+          <p className="eyebrow">MEMBERSHIP · LAUNCHING SOON</p>
           <h1>
             A beginning is easier
             <br />
@@ -59,7 +55,7 @@ export default function MembershipPage() {
             useful introductions and a reason to keep showing up.
           </p>
           <a href="#register-interest" className="beginning-text-link">
-            Founding membership is opening soon <ArrowRight size={18} />
+            Join the waitlist <ArrowRight size={18} />
           </a>
         </section>
         <section
@@ -77,19 +73,15 @@ export default function MembershipPage() {
           ))}
         </section>
         <section className="membership-principle">
-          <p className="eyebrow">WHAT YOU ARE PAYING FOR</p>
+          <p className="eyebrow">PEOPLE WHO HELP YOU BEGIN</p>
           <h2>
-            We give away the contacts.
+            The right guidance.
             <br />
-            <em>We charge for the company.</em>
+            <em>A little company.</em>
           </h2>
           <p>
-            Not a course. Not a subscription box. Not another feed to keep up
-            with. No cut of a coach’s fee.
-          </p>
-          <p>
-            If all you need is the name of a swimming coach, you should not have
-            to buy an experience to get it.
+            Find someone who knows their craft, and people to begin alongside.
+            We’ll help with the introductions.
           </p>
           <Link href="/directory" className="beginning-text-link">
             How we will check the little black book <ArrowRight size={18} />
@@ -103,51 +95,22 @@ export default function MembershipPage() {
             site, and circles have not been offered here yet. Introductions will
             be made by hand. Your circle may take time to come together.
           </p>
-          <p>
-            We will share confirmed enrolment numbers when membership opens. If
-            you would rather wait,{' '}
-            <Link href="/letter">come for the letter</Link>.
-          </p>
-        </section>
-        <section className="membership-price">
-          <div>
-            <p className="eyebrow">FOUNDING MEMBERSHIP · ANNUAL</p>
-            <h2>
-              ₹1,999<span> / year</span>
-            </h2>
-            <p>For the first 100 paid members. That annual price for life.</p>
-            <p className="form-small">
-              Planned total including 18% GST: ₹1,694.07 + ₹304.93 GST.
-            </p>
-          </div>
-          <div>
-            <p>Regular membership</p>
-            <strong>₹2,999 / year</strong>
-            <p className="form-small">₹2,541.53 + ₹457.47 GST. Annual only.</p>
-            <p className="form-small">
-              Enrolment has not opened. The interest list does not reserve the
-              founding price. No payment is taken here.
-            </p>
-          </div>
+          <p>Join the waitlist to hear when we launch.</p>
         </section>
         <section className="beginning-faq">
           <p className="eyebrow">A FEW PRACTICAL THINGS</p>
           {[
             [
-              'What does the annual fee cover?',
-              'The eight membership benefits above. Coaches are booked and paid directly. Hosted experiences are separate, with a 15% member discount.',
+              'What will membership include?',
+              'Your circle, personal introductions and time with people who teach. Hosted experiences will be offered separately.',
             ],
             [
               'Do I have to begin all five?',
               'No. Five is for the exercise. After that, pick one. You can return to the others when you are ready.',
             ],
             [
-              'How will renewal and cancellation work?',
-              'The planned membership is annual. Before payment, you will see the renewal amount and date. We plan a reminder seven days before renewal, one-click cancellation in your account, and a pro-rata refund within 14 days of a charge. No subscription is available or active yet.',
-            ],
-            [
               'What is ready today?',
-              'The free exercise, your browser-saved beginning and the interest lists. Membership, the letter and hosted experiences are being prepared. We will share confirmed details before asking for payment.',
+              'The free exercise, your browser-saved beginning and the waitlists. Membership, the letter and hosted experiences are being prepared. We will share confirmed details before asking for payment.',
             ],
           ].map(([q, a]) => (
             <details key={q}>
@@ -162,7 +125,7 @@ export default function MembershipPage() {
         <InterestForm
           kind="membership"
           subject="founding-membership"
-          title="Be here for the beginning."
+          title="Be first to hear."
         />
       </main>
       <Footer />

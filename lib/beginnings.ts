@@ -85,23 +85,23 @@ export function suggestedBeginning(life: string) {
     return {
       href: '/experiences/song',
       label: 'Make a recording to keep',
-      text: 'Our recording experience is taking shape. Add your name to hear when a host and date are confirmed.',
+      text: 'Our recording experience is taking shape. Join the waitlist to hear when it launches.',
     };
   if (/\b(paint|painting|painter|canvas|visual artist)\b/i.test(life))
     return {
       href: '/experiences/painting',
       label: 'Make something for your wall',
-      text: 'Our painting experience is taking shape. Add your name to hear when a host and date are confirmed.',
+      text: 'Our painting experience is taking shape. Join the waitlist to hear when it launches.',
     };
   if (/cricket/i.test(life))
     return {
       href: '/experiences/cricket',
       label: 'Take your place in the game',
-      text: 'Our hosted cricket match is taking shape. Add your name to hear when a ground and date are confirmed.',
+      text: 'Our hosted cricket match is taking shape. Join the waitlist to hear when it launches.',
     };
   return {
     href: '/membership',
     label: 'Find a little company',
-    text: 'We are bringing together people who want to begin one thing. See what membership will include and register your interest.',
+    text: 'We are bringing together people who want to begin one thing. See what membership will include and join the waitlist.',
   };
 }

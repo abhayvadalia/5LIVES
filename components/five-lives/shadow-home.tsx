@@ -207,20 +207,19 @@ export function ShadowHome({
             <div className="opening-type">
               <p className="eyebrow">
                 {imagined
-                  ? 'IF YOU HAD FIVE OTHER LIVES, WHO WOULD YOU BE?'
+                  ? 'WHAT HAVE YOU ALWAYS WANTED TO TRY?'
                   : 'THERE IS MORE TO YOU THAN YOU THINK'}
               </p>
               <h1>
-                {imagined ? 'Five lives.' : 'One you.'}
+                {imagined ? 'One life.' : 'One you.'}
                 <br />
-                <em>{imagined ? 'What if?' : 'Five lives.'}</em>
+                <em>{imagined ? 'More you.' : 'Five lives.'}</em>
               </h1>
             </div>
             <p className="scene-invitation">
-              Imagine five other lives. Choose one to begin.
+              A lesson. A journey. A different kind of afternoon.
               <span>
-                We help you find the people, lessons and experiences to live a
-                little of it.
+                Find the guidance and experiences to make it part of your life.
               </span>
             </p>
             <div className="vision-type" aria-hidden="true">

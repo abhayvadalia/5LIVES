@@ -47,12 +47,11 @@ void test('stale browser updates and invalid saved content are rejected', () => 
   assert.throws(() => readFive(storage));
   assert.throws(() => validateFive({ ...five, revision: 1, lives: [''] }));
 });
-void test('capture requires adult confirmation, specific consent and a real price band without assigning a city', () => {
+void test('waitlist requires consent and a valid experience without collecting city or budget', () => {
   const value = {
     kind: 'experience',
     subject: 'song',
     email: 'Person@example.com',
-    expectedPrice: '₹2–5k',
     adult: true,
     consentRequest: true,
     consentUpdates: false,
@@ -60,11 +59,15 @@ void test('capture requires adult confirmation, specific consent and a real pric
   assert.equal(validateCapture(value).email, 'person@example.com');
   assert.equal(validateCapture(value).consentUpdates, false);
   assert.equal(validateCapture(value).city, '');
+  assert.equal(validateCapture(value).expectedPrice, '');
+  assert.equal(
+    validateCapture({ ...value, expectedPrice: '₹2–5k' }).expectedPrice,
+    '',
+  );
   assert.equal(validateCapture({ ...value, city: 'Kolkata' }).city, '');
   for (const invalid of [
     { adult: false },
     { consentRequest: false },
-    { expectedPrice: '' },
     { subject: 'unknown' },
     { email: 'invalid' },
     { website: 'bot.example' },
