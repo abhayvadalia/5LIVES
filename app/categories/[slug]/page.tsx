@@ -44,7 +44,7 @@ export default async function CategoryPage({
             </Link>
           ))}
         </div>
-        <Link className="primary-action spaced" href="/#exercise">
+        <Link className="primary-action spaced" href="/choose?start=five">
           Make my list <ArrowRight size={18} />
         </Link>
       </main>

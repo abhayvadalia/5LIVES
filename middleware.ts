@@ -3,7 +3,6 @@ export function middleware(request: NextRequest) {
   const redirects: Record<string, string> = {
     '/imagined-lives': '/',
     '/original': '/',
-    '/choose': '/#exercise',
     '/choose/review': '/my-five',
     '/app': '/my-five',
     '/app/my-five': '/my-five',

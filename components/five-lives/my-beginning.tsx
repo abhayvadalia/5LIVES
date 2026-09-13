@@ -60,7 +60,7 @@ export function MyBeginning() {
             {error} <Link href="/app/settings">Your space</Link>
           </p>
         )}
-        <Link href="/#exercise" className="beginning-button">
+        <Link href="/choose?start=five" className="beginning-button">
           Find my five <ArrowRight />
         </Link>
       </section>

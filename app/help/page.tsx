@@ -29,7 +29,7 @@ export default function HelpPage() {
         fees go to the coach; produced Five Lives experiences are priced
         separately.
       </p>
-      <Link href="/#exercise" className="beginning-button">
+      <Link href="/choose?start=five" className="beginning-button">
         Find my five
       </Link>
     </LegalPage>

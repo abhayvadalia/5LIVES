@@ -1063,3 +1063,149 @@
 .beginning-heading {
   min-width: 0;
 }
+
+/* Restore the cinematic front door while preserving the membership interiors. */
+.selves-camera {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  transform-style: preserve-3d;
+  transform-origin: 50% 78%;
+  transform: rotateY(var(--look-x, 0deg)) rotateX(var(--look-y, 0deg));
+  transition: transform 260ms ease-out;
+}
+.selves-camera .selves-tableau {
+  z-index: auto;
+}
+.shadow-home .opening-type > .eyebrow,
+.shadow-home .final-type > .eyebrow,
+.shadow-home .selves-introduction > .eyebrow,
+.shadow-home .selves-closing > .eyebrow {
+  font-size: 0.75rem;
+}
+.shadow-home .opening-type > .eyebrow {
+  padding-inline: 24px;
+}
+.shadow-home .self-label span {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+.shadow-home .self-label strong {
+  font-size: 0.875rem;
+  line-height: 1.3;
+}
+.shadow-home .original-label {
+  font-size: 0.75rem;
+}
+.shadow-home .scroll-prompt {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+.shadow-home .shadow-motion-toggle {
+  font-size: 0.8125rem !important;
+}
+.shadow-home .site-header nav {
+  font-size: 0.875rem;
+}
+.shadow-home .vision-index {
+  font-size: 0.75rem;
+}
+.shadow-home .vision-row a {
+  font-size: 0.9375rem;
+}
+.shadow-home .vision-row p,
+.shadow-home .selves-introduction > p:last-child,
+.shadow-home .selves-closing > p {
+  font-size: 1rem;
+}
+.shadow-home .selves-closing > #exercise {
+  margin: 0;
+  scroll-margin-top: 40px;
+}
+.shadow-home .site-footer .footer-invitation p {
+  color: #e5ebdf;
+}
+.shadow-home .footer-invitation em {
+  letter-spacing: -0.03em;
+}
+.cinematic-exercise .beginning-hero {
+  min-height: calc(100svh - 100px);
+}
+.cinematic-exercise .beginning-heading h1 {
+  font-size: clamp(3rem, 5.8vw, 6rem);
+}
+.cinematic-exercise .beginning-heading .form-small {
+  font-size: 0.875rem;
+}
+.cinematic-exercise .exercise-paper {
+  transform: perspective(1200px) rotateY(-2deg);
+}
+.cinematic-exercise .exercise-paper:focus-within {
+  transform: perspective(1200px) rotateY(0deg);
+}
+.cinematic-exercise .exercise-paper {
+  transition:
+    transform 0.4s,
+    box-shadow 0.4s,
+    border-color 0.4s;
+}
+@media (max-width: 760px) {
+  .shadow-home .self-label {
+    width: 19vw;
+    top: -52px;
+  }
+  .shadow-home .self-label span {
+    font-size: 0.75rem;
+    letter-spacing: 0;
+  }
+  .shadow-home .self-label strong {
+    font-size: 0.75rem;
+  }
+  .shadow-home .scroll-prompt {
+    max-width: 140px;
+    font-size: 0.75rem;
+    letter-spacing: 0;
+  }
+  .shadow-home .shadow-cta {
+    font-size: 0.875rem;
+  }
+  .shadow-home .site-header nav > a {
+    font-size: 0.875rem;
+  }
+  .shadow-home .vision-row {
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  }
+  .shadow-home .vision-row:nth-child(even) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+  }
+  .shadow-home .vision-row p {
+    max-width: 100%;
+  }
+  .cinematic-exercise .exercise-paper {
+    transform: none;
+  }
+  .cinematic-exercise .beginning-hero {
+    min-height: auto;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .selves-camera,
+  .cinematic-exercise .exercise-paper {
+    transform: none !important;
+  }
+}
+@media (min-width: 761px) {
+  .shadow-home .selves-tableau {
+    --figure-width: clamp(120px, min(13vw, 20svh), 195px);
+  }
+  .shadow-home .original-self {
+    width: clamp(165px, min(15vw, 27svh), 230px);
+  }
+  .shadow-home .final-type {
+    top: 10%;
+  }
+  .shadow-home .final-type h2 {
+    font-size: clamp(3rem, min(6.8vw, 11svh), 7rem);
+  }
+}

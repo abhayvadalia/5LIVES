@@ -4,14 +4,14 @@ Implemented 12 September 2026 from the supplied product brief. This release is a
 
 ## Ready
 
-- One homepage with five free-form aspirations, adult confirmation, keyboard-accessible progression, seven-day browser draft, explicit save and one selected beginning.
+- Cinematic homepage restored on 13 September: a central human dissolves into five separating figures, with scroll-linked type zoom/blur, layered perspective and pointer-responsive depth. Find my five opens the free-form exercise at /choose. Adult confirmation, keyboard progression, seven-day browser draft, explicit save and one selected beginning are retained.
 - Prior browser-saved choices migrate into the new model without being erased. My five shows the active life; the other lives are collapsed. Completion allows choosing the next life.
 - Kolkata-only membership and letter pages. Eight concrete planned perks, annual founding/regular prices with 18% GST breakup, no invented member count or reviews.
 - Three prioritised experience concepts and other future concepts. Each has a working interest form with a required expected-price range.
 - D1-backed pre-launch requests: purpose-specific consent, optional update consent, timestamps/source, adult gating, validation and rate limiting. No emails are sent by this release.
 - Private management receipts provide access, email correction, update-consent withdrawal and deletion. Tokens are hashed in D1 and not placed in query strings. Browser and downloadable receipts preserve access.
 - Terms, privacy, refunds, grievance and community-guideline pages describe current behaviour and distinguish planned paid policies.
-- Old homepage and intake paths permanently redirect. No gifting flows or hard-coded hosting domain in public page links.
+- Old homepage and review paths permanently redirect. The /choose route now serves the questionnaire directly; homepage buttons use a fresh query URL to avoid cached redirects from the prior release. No gifting flows or hard-coded hosting domain in public page links.
 
 ## Launch dependencies: do not label these complete
 
