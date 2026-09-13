@@ -1209,3 +1209,286 @@
     font-size: clamp(3rem, min(6.8vw, 11svh), 7rem);
   }
 }
+
+/* The opening invitation stays legible beside the central figure. */
+.scene-invitation {
+  position: absolute;
+  z-index: 4;
+  left: max(32px, calc((100vw - 1280px) / 2));
+  bottom: 145px;
+  width: min(29vw, 330px);
+  margin: 0;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: #f0f0e9;
+  opacity: var(--openingOpacity, 1);
+  filter: blur(calc(var(--openingBlur, 0) * 0.25px));
+  pointer-events: none;
+}
+.scene-invitation span {
+  display: block;
+  margin-top: 10px;
+  color: #bbc8be;
+  font-size: 0.9375rem;
+}
+.shadow-paused .scene-invitation {
+  display: none;
+}
+.home-letter {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(36px, 6vw, 96px);
+  align-items: start;
+  border-top: 1px solid #3b4d43;
+  padding-block: clamp(64px, 9vw, 130px);
+}
+.home-letter-story {
+  padding-top: 20px;
+}
+.home-letter-story h2 {
+  font-size: clamp(2.7rem, 4.5vw, 5rem);
+  line-height: 1.07;
+  letter-spacing: -0.05em;
+  margin: 26px 0;
+}
+.home-letter-story > p:not(.eyebrow),
+.letter-editorial p:not(.eyebrow),
+.letter-signup-context > p:not(.eyebrow) {
+  color: #bdc8be;
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  max-width: 520px;
+  margin-bottom: 20px;
+}
+.letter-frequency {
+  display: block;
+  color: #9bae9f;
+  font-size: 0.8125rem;
+  margin-top: 22px;
+}
+.home-letter .interest-form {
+  width: 100%;
+  max-width: none;
+  border-radius: 5px;
+}
+.home-letter .interest-form h2 {
+  font-size: clamp(1.7rem, 2.5vw, 2.4rem);
+  line-height: 1.2;
+}
+.letter-page .editorial-hero h1 {
+  font-size: clamp(3.2rem, 7.3vw, 7rem);
+}
+.letter-page .editorial-hero .text-action {
+  margin-top: 26px;
+}
+.letter-editorial {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 60px;
+  padding-block: 70px;
+  border-top: 1px solid #3b4d43;
+}
+.letter-editorial h2,
+.letter-signup-context h2 {
+  font-size: clamp(2rem, 3.5vw, 3.4rem);
+  line-height: 1.16;
+  letter-spacing: -0.035em;
+  margin-bottom: 28px;
+}
+.letter-editorial p:not(.eyebrow) {
+  max-width: 640px;
+}
+.letter-sample {
+  background: #e7ecdf;
+  color: #20342b;
+  padding: clamp(28px, 6vw, 76px);
+  margin-block: 30px 100px;
+  border-radius: 4px;
+}
+.letter-sample-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 20px;
+}
+.letter-sample-heading span {
+  font-size: 0.8125rem;
+  color: #526356;
+}
+.letter-sample .eyebrow {
+  color: #526356;
+}
+.letter-sample h2 {
+  font-size: clamp(2.7rem, 6vw, 5.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.055em;
+  margin-block: 40px 28px;
+}
+.letter-sample h2 em {
+  color: #566c53;
+}
+.letter-sample > p {
+  max-width: 620px;
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  color: #405646;
+}
+.letter-sample .text-action {
+  color: #20342b;
+  margin-top: 16px;
+}
+.letter-signup-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  align-items: start;
+  gap: clamp(36px, 6vw, 90px);
+}
+.letter-signup-context {
+  padding-top: 30px;
+}
+.letter-signup-context h2 {
+  margin-top: 24px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .home-letter .interest-form {
+    transition:
+      border-color 250ms,
+      box-shadow 250ms;
+  }
+  .home-letter .interest-form:hover {
+    border-color: #81957d;
+    box-shadow: 0 12px 60px #0000001f;
+  }
+}
+.home-letter .interest-form:focus-within {
+  border-color: #b4c5a9;
+}
+@media (max-width: 760px) {
+  .home-letter,
+  .letter-signup-grid,
+  .letter-editorial {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .home-letter-story {
+    padding-top: 0;
+  }
+  .home-letter .interest-form {
+    padding: 26px 22px;
+  }
+  .letter-editorial {
+    padding-block: 45px;
+    gap: 12px;
+  }
+  .letter-sample {
+    margin-block: 20px 60px;
+  }
+  .letter-sample-heading {
+    align-items: start;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .letter-signup-context {
+    padding-top: 0;
+  }
+  .imagined-home .opening-type {
+    top: 16%;
+  }
+  .scene-invitation {
+    left: 24px;
+    right: 24px;
+    top: calc(16% + 43vw + 48px);
+    bottom: auto;
+    width: auto;
+    text-align: center;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+  .scene-invitation span {
+    font-size: 0.8125rem;
+    margin: 6px auto 0;
+    max-width: 320px;
+  }
+  .imagined-home .original-self {
+    width: 25vw;
+  }
+  .shadow-home .self-label {
+    top: -74px;
+  }
+}
+@media (max-height: 650px) and (max-width: 760px) {
+  .imagined-home .opening-type {
+    top: 13%;
+  }
+  .imagined-home .opening-type h1 {
+    font-size: 18vw;
+  }
+  .scene-invitation {
+    top: calc(13% + 36vw + 44px);
+  }
+  .imagined-home .original-self {
+    width: 20vw;
+  }
+}
+@media (max-height: 530px) {
+  .scene-invitation {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-letter .interest-form {
+    transition: none;
+  }
+}
+
+.founder-letter {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: clamp(32px, 6vw, 90px);
+  padding-block: clamp(60px, 8vw, 110px);
+  border-top: 1px solid #3b4d43;
+  scroll-margin-top: 40px;
+}
+.founder-letter-margin > span {
+  display: block;
+  font-size: 0.875rem;
+  color: #a7b8ab;
+  margin-top: 15px;
+}
+.founder-letter-body h2 {
+  font-size: clamp(2.3rem, 4vw, 4rem);
+  line-height: 1.14;
+  letter-spacing: -0.045em;
+  margin-bottom: 32px;
+}
+.founder-letter-body > p {
+  color: #bdc8be;
+  font-size: 1.0625rem;
+  line-height: 1.85;
+  margin-bottom: 22px;
+  max-width: 660px;
+}
+.founder-letter-body .founder-signature {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 2rem;
+  color: #e6ebdf;
+  margin-top: 32px;
+}
+.founder-signature span {
+  display: block;
+  font-family: var(--font-geist-sans), sans-serif;
+  font-style: normal;
+  font-size: 0.8125rem;
+  color: #a7b8ab;
+}
+@media (max-width: 760px) {
+  .founder-letter {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .imagined-home .original-self {
+    bottom: -7svh;
+  }
+}

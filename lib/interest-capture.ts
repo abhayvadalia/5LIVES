@@ -10,6 +10,7 @@ export type Capture = {
   consentUpdates: boolean;
   adult: true;
   consentRequest: true;
+  source: string;
 };
 export function validateCapture(value: unknown): Capture {
   const v = value as Record<string, unknown>;
@@ -28,7 +29,8 @@ export function validateCapture(value: unknown): Capture {
     !v.subject.trim() ||
     (v.kind === 'experience' &&
       !PRICE_BANDS.includes(v.expectedPrice as (typeof PRICE_BANDS)[number])) ||
-    v.website
+    v.website ||
+    (v.source !== undefined && !(v.kind === 'letter' && v.source === '/'))
   )
     throw new Error('INPUT');
   if (
@@ -46,6 +48,12 @@ export function validateCapture(value: unknown): Capture {
     consentUpdates: v.consentUpdates,
     adult: true,
     consentRequest: true,
+    source:
+      v.source === '/'
+        ? '/'
+        : v.kind === 'experience'
+          ? `/experiences/${v.subject}`
+          : `/${v.kind}`,
   };
 }
 export type CaptureReceipt = {

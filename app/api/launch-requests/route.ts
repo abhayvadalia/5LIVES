@@ -33,10 +33,6 @@ export async function POST(request: Request) {
     const id = crypto.randomUUID();
     const token = crypto.randomUUID() + crypto.randomUUID();
     const createdAt = new Date().toISOString();
-    const source =
-      input.kind === 'experience'
-        ? `/experiences/${input.subject}`
-        : `/${input.kind}`;
     await db.batch([
       db
         .prepare(
@@ -53,7 +49,7 @@ export async function POST(request: Request) {
           input.consentUpdates ? 1 : 0,
           'launch-request-2026-09-12',
           createdAt,
-          source,
+          input.source,
           createdAt,
         ),
       db

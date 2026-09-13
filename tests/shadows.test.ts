@@ -30,3 +30,13 @@ void test('overscroll preserves the endpoint scenes and separation never reverse
     previous = scene.split;
   }
 });
+
+void test('the story never leaves all three headings faded out between scenes', () => {
+  for (let step = 0; step <= 1000; step++) {
+    const scene = shadowMotion(step / 1000);
+    assert.ok(
+      Math.max(scene.openingOpacity, scene.visionOpacity, scene.finalOpacity) >=
+        0.4,
+    );
+  }
+});

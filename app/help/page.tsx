@@ -4,6 +4,16 @@ export const metadata = { title: 'About Five Lives' };
 export default function HelpPage() {
   return (
     <LegalPage title="Make room for one thing.">
+      <h2>Why Five Lives began</h2>
+      <p>
+        Abhay started Five Lives from a feeling: there are more things to learn,
+        do and experience than one lifetime seems to hold. The idea is to make
+        room for those possibilities with people who know their craft and can
+        help you explore them in depth.
+      </p>
+      <p>
+        <Link href="/#founder">Read Abhay’s note</Link>
+      </p>
       <h2>Begin with imagination</h2>
       <p>
         Name five other lives you would enjoy living. They can be contradictory,

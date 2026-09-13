@@ -6,9 +6,9 @@ const smooth = (value: number) => value * value * (3 - 2 * value);
 export function shadowMotion(progress: number) {
   const p = clamp01(progress);
   const leave = ramp(p, 0.02, 0.23);
-  const enterVision = ramp(p, 0.22, 0.34),
-    leaveVision = ramp(p, 0.44, 0.6);
-  const final = ramp(p, 0.67, 0.83);
+  const enterVision = ramp(p, 0.12, 0.23),
+    leaveVision = ramp(p, 0.48, 0.66);
+  const final = leaveVision;
   return {
     openingScale: 1 + leave * 1.3,
     openingOpacity: 1 - ramp(p, 0.08, 0.23),

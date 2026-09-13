@@ -21,10 +21,12 @@ import {
 export function InterestForm({
   kind,
   subject,
+  source,
   title = 'A place on the list.',
 }: {
   kind: 'membership' | 'letter' | 'experience';
   subject: string;
+  source?: '/';
   title?: string;
 }) {
   const [email, setEmail] = useState('');
@@ -47,6 +49,7 @@ export function InterestForm({
         body: JSON.stringify({
           kind,
           subject,
+          source,
           email,
           city: 'Kolkata',
           expectedPrice: price,
@@ -150,14 +153,24 @@ export function InterestForm({
   }
   return (
     <section className="interest-form" id="register-interest">
-      <p className="eyebrow">KOLKATA · OPENING SOON</p>
-      <h2>{receipt ? 'You are on the list.' : title}</h2>
+      <p className="eyebrow">
+        {kind === 'letter'
+          ? 'THE FIVE LIVES LETTER · FREE'
+          : 'KOLKATA · OPENING SOON'}
+      </p>
+      <h2>
+        {receipt
+          ? kind === 'letter'
+            ? 'Your invitation request is saved.'
+            : 'You are on the list.'
+          : title}
+      </h2>
       {receipt ? (
         <div role="status">
           <p>
-            Your interest has been saved. This is not a booking, paid membership
-            or newsletter subscription. We can contact you about this opening
-            when details are ready.
+            {kind === 'letter'
+              ? 'We can contact you when the first letter is ready. You’ll confirm separately before receiving future issues. No email has been sent yet.'
+              : 'Your interest has been saved. This is not a booking or paid membership. We can contact you about this opening when details are ready.'}
           </p>
           <Button
             variant="outline"
@@ -199,10 +212,12 @@ export function InterestForm({
               placeholder="you@example.com"
             />
           </label>
-          <label>
-            City
-            <Input value="Kolkata" readOnly />
-          </label>
+          {kind !== 'letter' && (
+            <label>
+              City
+              <Input value="Kolkata" readOnly />
+            </label>
+          )}
           {kind === 'experience' && (
             <label>
               What would you expect to spend?
@@ -238,7 +253,7 @@ export function InterestForm({
                 : kind === 'membership'
                   ? 'membership opening'
                   : 'experience'}
-              .
+              {kind === 'letter' ? ' from Kolkata.' : '.'}
             </span>
           </label>
           <label className="consent-row">
@@ -246,8 +261,8 @@ export function InterestForm({
             <span>Also email me other Five Lives openings. Optional.</span>
           </label>
           <p className="form-small">
-            Your information stays with Five Lives; it is not sent to coaches.
-            Manage or remove this request with your receipt.{' '}
+            Your information stays with Five Lives. Manage or remove this
+            request with your receipt.{' '}
             <Link href="/privacy">Read the data notice</Link>.
           </p>
           <Button
@@ -257,7 +272,11 @@ export function InterestForm({
               busy || !consent || !adult || (kind === 'experience' && !price)
             }
           >
-            {busy ? 'Saving…' : 'Register my interest'}
+            {busy
+              ? 'Saving…'
+              : kind === 'letter'
+                ? 'Keep me in the loop'
+                : 'Register my interest'}
             <ArrowRight />
           </Button>
         </form>

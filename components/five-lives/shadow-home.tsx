@@ -9,6 +9,8 @@ import {
 import Link from 'next/link';
 import { ArrowDown, ArrowUpRight, Pause, Play } from 'lucide-react';
 import { Header, Footer } from './shell';
+import { InterestForm } from './interest-form';
+import { FounderNote } from './founder-note';
 import { Button } from '@/components/ui/button';
 import { categories } from '@/lib/catalog';
 import { shadowMotion } from '@/lib/shadow-motion';
@@ -21,7 +23,7 @@ const subscribe = (callback: () => void) => {
 const getReduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 const lives = [
   {
-    name: 'The player.',
+    name: 'I could play again.',
     line: 'For the joy of being in the game.',
     verb: 'Play.',
     category: 'Sports',
@@ -31,7 +33,7 @@ const lives = [
     y: 0.08,
   },
   {
-    name: 'The artist.',
+    name: 'I could make something.',
     line: 'For the things only you can make.',
     verb: 'Create.',
     category: 'Art',
@@ -41,7 +43,7 @@ const lives = [
     y: -0.08,
   },
   {
-    name: 'The stronger you.',
+    name: 'I could feel stronger.',
     line: 'For a capability you want to discover.',
     verb: 'Feel.',
     category: 'Health',
@@ -51,7 +53,7 @@ const lives = [
     y: -0.42,
   },
   {
-    name: 'The explorer.',
+    name: 'I could explore.',
     line: 'For somewhere you’ve never been.',
     verb: 'Go.',
     category: 'Travel',
@@ -61,7 +63,7 @@ const lives = [
     y: -0.08,
   },
   {
-    name: 'The maker.',
+    name: 'I could build something.',
     line: 'For the idea you could bring to life.',
     verb: 'Build.',
     category: 'Tech',
@@ -214,6 +216,13 @@ export function ShadowHome({
                 <em>{imagined ? 'What if?' : 'Five lives.'}</em>
               </h1>
             </div>
+            <p className="scene-invitation">
+              Imagine five other lives. Choose one to begin.
+              <span>
+                We help you find the people, lessons and experiences to live a
+                little of it in Kolkata.
+              </span>
+            </p>
             <div className="vision-type" aria-hidden="true">
               <span>
                 {imagined
@@ -335,32 +344,31 @@ export function ShadowHome({
           >
             <article>
               <span>01 / IMAGINE</span>
-              <h2>Who could you be?</h2>
+              <h2>Name your five.</h2>
               <p>
-                Picture an ordinary day in another life. What are you doing? Who
-                is around you? There’s room to surprise yourself.
+                A singer. A gardener. A teacher by the sea. Write down five
+                lives you would love to try. There’s room to surprise yourself.
               </p>
             </article>
             <article>
-              <span>02 / NOTICE</span>
-              <h2>What pulls you there?</h2>
+              <span>02 / CHOOSE</span>
+              <h2>Follow one feeling.</h2>
               <p>
-                Maybe it’s freedom. Maybe it’s belonging, making something, or
-                learning again. Give that feeling a name.
+                Choose the life that draws you in today. Notice what you want
+                from it: freedom, belonging, the pleasure of making something.
               </p>
             </article>
             <article>
-              <span>03 / TRY</span>
-              <h2>What fits this week?</h2>
+              <span>03 / BEGIN</span>
+              <h2>Make it part of life.</h2>
               <p>
-                Choose a first step you can picture taking. We’ll help you
-                explore a lesson, a guide or an experience that can bring it
-                within reach.
+                Find a first step that fits your week. We’re bringing together
+                lessons, guides and shared experiences in Kolkata to help you
+                begin.
               </p>
             </article>
             <p className="imagination-bridge">
-              Your imagined lives can be anything. These five categories help us
-              find a beginning that feels like you.
+              These are only possibilities. Your five can be anything.
             </p>
           </section>
         )}
@@ -444,6 +452,7 @@ export function ShadowHome({
             ))}
           </div>
         </section>
+        <FounderNote />
       </main>
       {imagined && (
         <aside
@@ -461,6 +470,40 @@ export function ShadowHome({
           </p>
         </aside>
       )}
+      <section
+        className="home-letter page-width"
+        aria-labelledby="home-letter-title"
+      >
+        <div className="home-letter-story">
+          <p className="eyebrow">A LETTER FOR YOUR OTHER LIVES</p>
+          <h2 id="home-letter-title">
+            Keep a little
+            <br />
+            <em>possibility close.</em>
+          </h2>
+          <p>
+            For the song you keep humming. The place you keep saving. The part
+            of yourself you’d like to spend more time with.
+          </p>
+          <p>
+            We’re preparing a free letter from Kolkata: stories of people making
+            room, a small beginning to try, and a question to take into your
+            week.
+          </p>
+          <Link className="text-action" href="/letter">
+            A taste of what’s to come <ArrowUpRight size={18} />
+          </Link>
+          <span className="letter-frequency">
+            Every other week, once we begin.
+          </span>
+        </div>
+        <InterestForm
+          kind="letter"
+          subject="first-letter"
+          source="/"
+          title="Let me know when it begins."
+        />
+      </section>
       <Footer />
     </div>
   );

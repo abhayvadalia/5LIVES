@@ -18,9 +18,6 @@ export function Header({
         <Link href="/experiences" className="desktop-link">
           Experiences
         </Link>
-        <Link href="/letter" className="desktop-link">
-          The letter
-        </Link>
         <Link href="/my-five" className="nav-five">
           My five <ArrowUpRight size={16} />
         </Link>
@@ -46,6 +43,7 @@ export function Footer(_props: { homeLink?: 'original' | 'imagined' } = {}) {
       </Link>
       <p>Making room in Kolkata.</p>
       <div>
+        <Link href="/letter">Stories & small beginnings</Link>
         <Link href="/help">About & help</Link>
         <Link href="/privacy">Privacy</Link>
         <Link href="/terms">Terms</Link>

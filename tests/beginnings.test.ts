@@ -71,3 +71,28 @@ void test('capture requires adult confirmation, specific consent, Kolkata and a 
   ])
     assert.throws(() => validateCapture({ ...value, ...invalid }));
 });
+
+void test('newsletter requests record the homepage source without accepting arbitrary source URLs', () => {
+  const letter = {
+    kind: 'letter',
+    subject: 'first-letter',
+    email: 'reader@example.com',
+    city: 'Kolkata',
+    adult: true,
+    consentRequest: true,
+    consentUpdates: false,
+  };
+  assert.equal(validateCapture(letter).source, '/letter');
+  assert.equal(validateCapture({ ...letter, source: '/' }).source, '/');
+  assert.throws(() =>
+    validateCapture({ ...letter, source: 'https://other.example' }),
+  );
+  assert.throws(() =>
+    validateCapture({
+      ...letter,
+      kind: 'membership',
+      subject: 'founding-membership',
+      source: '/',
+    }),
+  );
+});
